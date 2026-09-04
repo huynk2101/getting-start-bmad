@@ -1,0 +1,40 @@
+.s-inline-input-wrap {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.s-inline-input {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 4px 8px;
+  font-size: var(--text-body);
+  width: 64px;
+  text-align: center;
+  background: var(--color-surface);
+  color: var(--color-text);
+  outline: none;
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+}
+
+.s-inline-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(106, 110, 158, 0.2);
+}
+
+.s-inline-input--error {
+  border-color: var(--color-danger);
+}
+
+.s-inline-input:disabled {
+  background: var(--color-background);
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+}
+
+.s-inline-input__error {
+  font-size: 11px;
+  color: var(--color-danger);
+  white-space: nowrap;
+}

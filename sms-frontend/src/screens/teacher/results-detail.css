@@ -1,0 +1,20 @@
+.s-results-detail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-gutter);
+}
+
+.s-results-detail h2 {
+  margin: 0;
+}
+
+.s-results-detail__stats {
+  display: flex;
+  gap: 20px;
+  font-size: var(--text-body);
+  color: var(--color-text-muted);
+}
+
+.s-results-detail__stats strong {
+  color: var(--color-text);
+}

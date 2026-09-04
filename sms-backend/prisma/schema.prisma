@@ -1,0 +1,134 @@
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  moduleFormat = "esm"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  TEACHER
+  STUDENT
+}
+
+enum Weekday {
+  MONDAY
+  TUESDAY
+  WEDNESDAY
+  THURSDAY
+  FRIDAY
+  SATURDAY
+  SUNDAY
+}
+
+enum SubmissionStatus {
+  IN_PROGRESS
+  SUBMITTED
+}
+
+model User {
+  id           String   @id @default(uuid())
+  username     String                    @unique
+  passwordHash String
+  firstName    String
+  lastName     String
+  role         Role
+  createdAt    DateTime                  @default(now()) @db.Timestamptz(3)
+  updatedAt    DateTime                  @updatedAt @db.Timestamptz(3)
+
+  classes     Class[]      @relation("ClassStudents")
+  teacherOf   Class[]      @relation("ClassTeacher")
+  submissions Submission[]
+  grades      Score[]      @relation("ScoreGradedBy")
+}
+
+model Class {
+  id        String   @id @default(uuid())
+  slug      String   @unique
+  name      String
+  teacherId String
+  teacher   User     @relation("ClassTeacher", fields: [teacherId], references: [id], onDelete: Restrict)
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+  updatedAt DateTime @updatedAt @db.Timestamptz(3)
+
+  students  User[]     @relation("ClassStudents")
+  schedules Schedule[]
+  exams     Exam[]
+
+  @@index([teacherId])
+}
+
+model Schedule {
+  id        String   @id @default(uuid())
+  classId   String
+  class     Class    @relation(fields: [classId], references: [id], onDelete: Cascade)
+  dayOfWeek Weekday
+  startTime String
+  endTime   String
+
+  @@index([classId])
+  @@index([dayOfWeek])
+}
+
+model Exam {
+  id              String    @id @default(uuid())
+  classId         String
+  class           Class     @relation(fields: [classId], references: [id], onDelete: Cascade)
+  title           String
+  description     String?
+  scheduledAt     DateTime  @db.Timestamptz(3)
+  durationMinutes Int
+  createdAt       DateTime  @default(now()) @db.Timestamptz(3)
+  updatedAt       DateTime  @updatedAt @db.Timestamptz(3)
+
+  questions   Question[]
+  submissions Submission[]
+
+  @@index([classId])
+  @@index([scheduledAt])
+}
+
+model Question {
+  id            String @id @default(uuid())
+  examId        String
+  exam          Exam   @relation(fields: [examId], references: [id], onDelete: Cascade)
+  prompt        String
+  options       Json[]
+  correctAnswer String
+  points        Int
+
+  @@index([examId])
+}
+
+model Submission {
+  id          String            @id @default(uuid())
+  examId      String
+  studentId   String
+  status      SubmissionStatus
+  answers     Json?
+  submittedAt DateTime?           @db.Timestamptz(3)
+  createdAt   DateTime            @default(now()) @db.Timestamptz(3)
+
+  exam   Exam   @relation(fields: [examId], references: [id], onDelete: Cascade)
+  student User   @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  score  Score?
+
+  @@unique([examId, studentId])
+  @@index([examId])
+  @@index([studentId])
+}
+
+model Score {
+  id             String      @id @default(uuid())
+  submissionId   String      @unique
+  submission     Submission  @relation(fields: [submissionId], references: [id], onDelete: Cascade)
+  pointsEarned   Int         @default(0)
+  pointsPossible Int
+  gradedById     String?
+  gradedBy       User?       @relation("ScoreGradedBy", fields: [gradedById], references: [id], onDelete: Restrict)
+  gradedAt       DateTime?   @db.Timestamptz(3)
+
+  @@index([gradedById])
+}

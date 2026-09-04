@@ -1,0 +1,61 @@
+.s-exams-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-gutter);
+}
+
+.s-exams-list h2 {
+  margin: 0;
+}
+
+.s-exams-list__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.s-exams-items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-gutter);
+}
+
+.s-exam-item {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-gutter);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.s-exam-item:hover {
+  background: var(--color-background);
+}
+
+.s-exam-item__title {
+  font-weight: var(--weight-label);
+  color: var(--color-text);
+}
+
+.s-exam-item__meta {
+  font-size: var(--text-label);
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+.s-exam-item__right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.s-exam-item__progress {
+  font-size: var(--text-label);
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}

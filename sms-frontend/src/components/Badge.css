@@ -1,0 +1,24 @@
+.s-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-size: var(--text-badge);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.s-badge--pending {
+  background-color: var(--color-badge-pending-bg);
+  color: var(--color-badge-pending-text);
+}
+
+.s-badge--absent {
+  background-color: var(--color-badge-absent-bg);
+  color: var(--color-badge-absent-text);
+}
+
+.s-badge--graded {
+  background-color: var(--color-badge-graded-bg);
+  color: var(--color-badge-graded-text);
+}

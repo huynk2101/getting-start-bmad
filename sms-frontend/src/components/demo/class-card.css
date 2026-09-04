@@ -1,0 +1,32 @@
+.s-class-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  padding: var(--spacing-card-padding);
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.s-class-card:hover {
+  background: var(--color-background);
+}
+
+.s-class-card__title {
+  margin: 0 0 4px 0;
+  color: var(--color-primary);
+}
+
+.s-class-card__meta {
+  margin: 0 0 8px 0;
+  font-size: var(--text-label);
+  color: var(--color-text-muted);
+}
+
+.s-class-card__stats {
+  display: flex;
+  gap: var(--spacing-gutter);
+  font-size: var(--text-label);
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}

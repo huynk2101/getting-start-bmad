@@ -1,0 +1,25 @@
+.s-student-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-section);
+}
+
+.s-widget-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-gutter);
+}
+
+.s-widget-title {
+  font-family: var(--font-display);
+  font-size: var(--text-body);
+  font-weight: var(--weight-display-sm);
+  color: var(--color-primary);
+  margin: 0 0 var(--spacing-gutter) 0;
+}
+
+@media (max-width: 768px) {
+  .s-widget-grid {
+    grid-template-columns: 1fr;
+  }
+}

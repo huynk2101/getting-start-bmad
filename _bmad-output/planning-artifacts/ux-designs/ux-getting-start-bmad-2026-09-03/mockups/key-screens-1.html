@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SchoolDesk — Book Binder Visual Direction — Key Screens</title>
+<!--
+  BOOK BINDER VISUAL DIRECTION TOKENS
+  ====================================
+  Background (warm paper):  #FAF8F5
+  Surface (white card):     #FFFFFF
+  Primary (muted indigo):   #6A6E9E
+  Accent (leather brown):   #9B7E5A
+  Success (muted green):    #6A9E6E
+  Warning (muted amber):    #9E8A5A
+  Danger (muted red):       #9E6A6A
+  Text (primary):           #2D2D2D
+  Text-muted:               #7A7A7A
+  Border:                   #E5E2DD
+  Border-radius:            8px
+  Typography-body:          system sans-serif (Segoe UI, -apple-system, Helvetica, Arial)
+  Typography-display:       Georgia, "Times New Roman", serif
+  Spacing:                  tight, data-first
+  Voice:                    calm, measured, professional
+-->
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    background: #FAF8F5;
+    color: #2D2D2D;
+    line-height: 1.5;
+    padding: 32px;
+  }
+
+  /* ── Screen separator ── */
+  .screen-block {
+    margin-bottom: 64px;
+  }
+  .screen-label {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #9B7E5A;
+    margin-bottom: 8px;
+  }
+  .screen-title {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 20px;
+    color: #2D2D2D;
+    margin-bottom: 16px;
+    font-weight: 400;
+  }
+
+  /* ── Browser chrome frame ── */
+  .browser-frame {
+    border: 1px solid #E5E2DD;
+    border-radius: 8px;
+    background: #FFFFFF;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .browser-bar {
+    background: #F2F0ED;
+    border-bottom: 1px solid #E5E2DD;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .browser-dots {
+    display: flex;
+    gap: 6px;
+  }
+  .browser-dots span {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .browser-dots .dot-close { background: #9E6A6A; }
+  .browser-dots .dot-min   { background: #9E8A5A; }
+  .browser-dots .dot-max   { background: #6A9E6E; }
+  .browser-tab {
+    background: #FFFFFF;
+    border: 1px solid #E5E2DD;
+    border-bottom: none;
+    border-radius: 6px 6px 0 0;
+    padding: 5px 16px;
+    font-size: 12px;
+    color: #2D2D2D;
+    margin-left: 8px;
+  }
+  .browser-url {
+    flex: 1;
+    background: #FFFFFF;
+    border: 1px solid #E5E2DD;
+    border-radius: 4px;
+    padding: 4px 10px;
+    font-size: 11px;
+    color: #7A7A7A;
+    margin-left: 16px;
+  }
+
+  /* ── App chrome ── */
+  .app-topnav {
+    background: #FFFFFF;
+    border-bottom: 1px solid #E5E2DD;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    height: 48px;
+    gap: 4px;
+  }
+  .app-brand {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 16px;
+    color: #6A6E9E;
+    margin-right: 24px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+  .app-nav-item {
+    padding: 12px 14px;
+    font-size: 13px;
+    color: #7A7A7A;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    cursor: default;
+  }
+  .app-nav-item.active {
+    color: #6A6E9E;
+    border-bottom-color: #6A6E9E;
+  }
+  .app-body {
+    padding: 24px;
+    background: #FAF8F5;
+    min-height: 420px;
+  }
+
+  /* ── Section headers ── */
+  .section-heading {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: #2D2D2D;
+    margin-bottom: 4px;
+  }
+  .section-sub {
+    font-size: 13px;
+    color: #7A7A7A;
+    margin-bottom: 20px;
+  }
+
+  /* ── Stat bar ── */
+  .stat-bar {
+    background: #FFFFFF;
+    border: 1px solid #E5E2DD;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 12px;
+    color: #7A7A7A;
+    margin-bottom: 16px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .stat-bar strong { color: #2D2D2D; font-weight: 600; }
+
+  /* ── Tab bar ── */
+  .tab-bar {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid #E5E2DD;
+    margin-bottom: 20px;
+  }
+  .tab-item {
+    padding: 8px 16px;
+    font-size: 13px;
+    color: #7A7A7A;
+    border-bottom: 2px solid transparent;
+    cursor: default;
+  }
+  .tab-item.active {
+    color: #6A6E9E;
+    border-bottom-color: #6A6E9E;
+    font-weight: 500;
+  }
+
+  /* ── Search ── */
+  .search-input {
+    border: 1px solid #E5E2DD;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 13px;
+    color: #7A7A7A;
+    background: #FFFFFF;
+    width: 260px;
+    margin-bottom: 12px;
+    outline: none;
+  }
+
+  /* ── Tables ── */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #FFFFFF;
+    border: 1px solid #E5E2DD;
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: 13px;
+  }
+  .data-table thead th {
+    text-align: left;
+    padding: 10px 14px;
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: #7A7A7A;
+    border-bottom: 1px solid #E5E2DD;
+    background: #FAF8F5;
+  }
+  .data-table tbody td {
+    padding: 10px 14px;
+    border-bottom: 1px solid #F0EEEB;
+    color: #2D2D2D;
+    vertical-align: middle;
+  }
+  .data-table tbody tr:last-child td { border-bottom: none; }
+  .data-table tbody tr:hover { background: #FAF8F5; }
+
+  /* ── Buttons ── */
+  .btn {
+    display: inline-block;
+    padding: 6px 14px;
+    font-size: 12px;
+    border-radius: 6px;
+    border: 1px solid #E5E2DD;
+    background: #FFFFFF;
+    color: #6A6E9E;
+    cursor: default;
+    font-weight: 500;
+  }
+  .btn-primary {
+    background: #6A6E9E;
+    color: #FFFFFF;
+    border-color: #6A6E9E;
+  }
+  .btn-primary:disabled,
+  .btn-primary.is-disabled {
+    background: #B0B2C8;
+    border-color: #B0B2C8;
+    color: #FFFFFF;
+    cursor: not-allowed;
+  }
+  .btn-success {
+    background: #6A9E6E;
+    color: #FFFFFF;
+    border-color: #6A9E6E;
+  }
+  .btn-danger {
+    background: #9E6A6A;
+    color: #FFFFFF;
+    border-color: #9E6A6A;
+  }
+  .btn-sm {
+    padding: 4px 10px;
+    font-size: 11px;
+  }
+
+  /* ── Status badges ── */
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .badge-graded { background: #EDF5ED; color: #6A9E6E; }
+  .badge-pending { background: #FDF5E6; color: #9E8A5A; }
+  .badge-absent  { background: #FDECEC; color: #9E6A6A; }
+
+  /* ── Inline inputs ── */
+  .inline-input {
+    border: 1px solid #E5E2DD;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 13px;
+    width: 64px;
+    text-align: center;
+    background: #FFFFFF;
+    color: #2D2D2D;
+    outline: none;
+  }
+
+  /* ── Toggle (absent) ── */
+  .toggle-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #9E6A6A;
+  }
+  .toggle-track {
+    width: 34px; height: 18px;
+    background: #9E6A6A;
+    border-radius: 9px;
+    position: relative;
+    display: inline-block;
+  }
+  .toggle-track .toggle-thumb {
+    width: 14px; height: 14px;
+    background: #FFFFFF;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    right: 2px;
+  }
+  .toggle-track.off { background: #E5E2DD; }
+  .toggle-track.off .toggle-thumb { right: auto; left: 2px; }
+
+  /* ── Helper text ── */
+  .helper-text {
+    font-size: 12px;
+    color: #9E8A5A;
+    font-style: italic;
+    margin-top: 12px;
+  }
+
+  /* ── Cards / widgets ── */
+  .widget-card {
+    background: #FFFFFF;
+    border: 1px solid #E5E2DD;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  .widget-title {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #6A6E9E;
+    margin-bottom: 12px;
+  }
+
+  /* ── Timeline ── */
+  .timeline-item {
+    display: flex;
+    align-items: baseline;
+    padding: 8px 0;
+    border-bottom: 1px solid #F0EEEB;
+    gap: 12px;
+  }
+  .timeline-item:last-child { border-bottom: none; }
+  .timeline-time {
+    font-size: 12px;
+    color: #7A7A7A;
+    min-width: 90px;
+    font-variant-numeric: tabular-nums;
+  }
+  .timeline-name {
+    font-size: 13px;
+    color: #2D2D2D;
+    font-weight: 500;
+  }
+  .timeline-teacher {
+    font-size: 12px;
+    color: #7A7A7A;
+  }
+
+  /* ── Upcoming exam row ── */
+  .exam-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #F0EEEB;
+  }
+  .exam-row:last-child { border-bottom: none; }
+  .exam-name { font-size: 13px; color: #2D2D2D; font-weight: 500; }
+  .exam-meta { font-size: 12px; color: #7A7A7A; }
+  .exam-countdown {
+    font-size: 11px;
+    color: #9E8A5A;
+    background: #FDF5E6;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+
+  /* ── Result row ── */
+  .result-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #F0EEEB;
+  }
+  .result-row:last-child { border-bottom: none; }
+  .result-name { font-size: 13px; color: #2D2D2D; }
+  .result-score { font-size: 14px; font-weight: 600; color: #6A6E9E; }
+
+  /* ── Grade display ── */
+  .score-display {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+  .score-big {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 36px;
+    color: #6A6E9E;
+    font-weight: 400;
+    line-height: 1;
+  }
+  .score-pct {
+    font-size: 14px;
+    color: #7A7A7A;
+  }
+
+  /* ── Question breakdown ── */
+  .q-row {
+    display: flex;
+    align-items: baseline;
+    padding: 10px 0;
+    border-bottom: 1px solid #F0EEEB;
+    gap: 12px;
+  }
+  .q-row:last-child { border-bottom: none; }
+  .q-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #6A6E9E;
+    min-width: 28px;
+  }
+  .q-text { flex: 1; font-size: 13px; color: #2D2D2D; }
+  .q-answer {
+    font-size: 13px;
+    color: #2D2D2D;
+    min-width: 100px;
+    text-align: right;
+  }
+  .q-correct { color: #6A9E6E; font-weight: 600; }
+  .q-incorrect { color: #9E6A6A; font-weight: 600; }
+  .q-expected { font-size: 11px; color: #7A7A7A; margin-top: 2px; }
+
+  /* ── Greeting ── */
+  .greeting {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: #2D2D2D;
+    margin-bottom: 24px;
+  }
+
+  /* ── Note callout ── */
+  .note-callout {
+    background: #F8F6F2;
+    border-left: 3px solid #9B7E5A;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: #7A7A7A;
+    border-radius: 0 6px 6px 0;
+    margin-top: 16px;
+  }
+
+  /* ── Back link ── */
+  .back-link {
+    display: inline-block;
+    margin-top: 16px;
+    font-size: 13px;
+    color: #6A6E9E;
+    text-decoration: none;
+    cursor: default;
+  }
+  .back-link::before {
+    content: "\2190 ";
+  }
+
+  /* ── Summary bar ── */
+  .summary-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: #FFFFFF;
+    border: 1px solid #E5E2DD;
+    border-radius: 8px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .summary-text { font-size: 13px; color: #7A7A7A; }
+  .summary-text strong { color: #2D2D2D; }
+
+  /* ── Two-column widget grid ── */
+  .widget-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  /* ── Result header ── */
+  .result-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+</style>
+</head>
+<body>
+
+<!-- ================================================================
+     SCREEN 1: TEACHER — CLASS DETAIL (Biology 101)
+     ================================================================ -->
+<div class="screen-block">
+  <div class="screen-label">Screen 1</div>
+  <div class="screen-title">Teacher — Class Detail (Biology 101)</div>
+
+  <div class="browser-frame">
+    <div class="browser-bar">
+      <div class="browser-dots">
+        <span class="dot-close"></span>
+        <span class="dot-min"></span>
+        <span class="dot-max"></span>
+      </div>
+      <div class="browser-tab">SchoolDesk — Biology 101</div>
+      <div class="browser-url">schooldesk.app/classes/bio-101</div>
+    </div>
+
+    <div class="app-topnav">
+      <div class="app-brand">SchoolDesk</div>
+      <div class="app-nav-item">Dashboard</div>
+      <div class="app-nav-item active">Classes</div>
+      <div class="app-nav-item">Students</div>
+      <div class="app-nav-item">Exams</div>
+      <div class="app-nav-item">Results</div>
+    </div>
+
+    <div class="app-body">
+      <div class="section-heading">Biology 101</div>
+      <div class="section-sub">Mr. Chen · Mon / Wed / Fri 09:00</div>
+
+      <div class="stat-bar">
+        <span><strong>6</strong> students</span>
+        <span>Next exam: <strong>Biology Midterm</strong> · Fri 08:00</span>
+      </div>
+
+      <div class="tab-bar">
+        <div class="tab-item active">Students</div>
+        <div class="tab-item">Schedule</div>
+        <div class="tab-item">Exams</div>
+      </div>
+
+      <input class="search-input" type="text" placeholder="Search students..." readonly>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Student ID</th>
+            <th>Enrolled Since</th>
+            <th style="text-align:right;">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Alex Rivera</td>
+            <td>STU-1001</td>
+            <td>Sep 2026</td>
+            <td style="text-align:right;"><span class="btn btn-sm">View</span></td>
+          </tr>
+          <tr>
+            <td>Morgan Lee</td>
+            <td>STU-1002</td>
+            <td>Sep 2026</td>
+            <td style="text-align:right;"><span class="btn btn-sm">View</span></td>
+          </tr>
+          <tr>
+            <td>Jordan Kim</td>
+            <td>STU-1003</td>
+            <td>Sep 2026</td>
+            <td style="text-align:right;"><span class="btn btn-sm">View</span></td>
+          </tr>
+          <tr>
+            <td>Taylor Swift</td>
+            <td>STU-1004</td>
+            <td>Sep 2026</td>
+            <td style="text-align:right;"><span class="btn btn-sm">View</span></td>
+          </tr>
+          <tr>
+            <td>Casey Chen</td>
+            <td>STU-1005</td>
+            <td>Sep 2026</td>
+            <td style="text-align:right;"><span class="btn btn-sm">View</span></td>
+          </tr>
+          <tr>
+            <td>Riley Patel</td>
+            <td>STU-1006</td>
+            <td>Sep 2026</td>
+            <td style="text-align:right;"><span class="btn btn-sm">View</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================
+     SCREEN 2: TEACHER — GRADING VIEW (Biology Midterm)
+     ================================================================ -->
+<div class="screen-block">
+  <div class="screen-label">Screen 2</div>
+  <div class="screen-title">Teacher — Grading View (Biology Midterm)</div>
+
+  <div class="browser-frame">
+    <div class="browser-bar">
+      <div class="browser-dots">
+        <span class="dot-close"></span>
+        <span class="dot-min"></span>
+        <span class="dot-max"></span>
+      </div>
+      <div class="browser-tab">SchoolDesk — Grading</div>
+      <div class="browser-url">schooldesk.app/exams/bio-midterm/grade</div>
+    </div>
+
+    <div class="app-topnav">
+      <div class="app-brand">SchoolDesk</div>
+      <div class="app-nav-item">Dashboard</div>
+      <div class="app-nav-item active">Classes</div>
+      <div class="app-nav-item">Students</div>
+      <div class="app-nav-item">Exams</div>
+      <div class="app-nav-item">Results</div>
+    </div>
+
+    <div class="app-body">
+      <div class="section-heading">Biology Midterm — Grading</div>
+      <div class="section-sub">28 students, 25 submitted, 3 pending</div>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Score</th>
+            <th>Status</th>
+            <th style="text-align:right;">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Alex Rivera</td>
+            <td>85 / 100</td>
+            <td><span class="badge badge-graded">Graded</span></td>
+            <td style="text-align:right;"><span class="btn btn-sm">View</span></td>
+          </tr>
+          <tr>
+            <td>Morgan Lee</td>
+            <td><input class="inline-input" type="text" placeholder="__" readonly></td>
+            <td><span class="badge badge-pending">Pending</span></td>
+            <td style="text-align:right;"><span class="btn btn-sm btn-success">Save</span></td>
+          </tr>
+          <tr>
+            <td>Jordan Kim</td>
+            <td><input class="inline-input" type="text" placeholder="__" readonly></td>
+            <td><span class="badge badge-pending">Pending</span></td>
+            <td style="text-align:right;"><span class="btn btn-sm btn-success">Save</span></td>
+          </tr>
+          <tr>
+            <td>Taylor Swift</td>
+            <td>—</td>
+            <td>
+              <div class="toggle-wrap">
+                <div class="toggle-track"><div class="toggle-thumb"></div></div>
+                Absent
+              </div>
+            </td>
+            <td style="text-align:right;"><span class="btn btn-sm btn-danger">Mark Absent</span></td>
+          </tr>
+          <tr>
+            <td>Casey Chen</td>
+            <td><input class="inline-input" type="text" placeholder="__" readonly></td>
+            <td><span class="badge badge-pending">Pending</span></td>
+            <td style="text-align:right;"><span class="btn btn-sm btn-success">Save</span></td>
+          </tr>
+          <tr>
+            <td>Riley Patel</td>
+            <td>72 / 100</td>
+            <td><span class="badge badge-graded">Graded</span></td>
+            <td style="text-align:right;"><span class="btn btn-sm">View</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="summary-bar">
+        <div class="summary-text"><strong>25</strong> of 28 graded · Average score: <strong>78.3%</strong></div>
+        <button class="btn-primary is-disabled" disabled style="display:inline-block;padding:8px 20px;font-size:13px;border-radius:6px;border:none;cursor:not-allowed;">Finalize Grades</button>
+      </div>
+      <div class="helper-text">Finalizing unlocks the correct answer breakdown for students.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================
+     SCREEN 3: STUDENT DASHBOARD (Ms. Rivera)
+     ================================================================ -->
+<div class="screen-block">
+  <div class="screen-label">Screen 3</div>
+  <div class="screen-title">Student Dashboard (Alex Rivera)</div>
+
+  <div class="browser-frame">
+    <div class="browser-bar">
+      <div class="browser-dots">
+        <span class="dot-close"></span>
+        <span class="dot-min"></span>
+        <span class="dot-max"></span>
+      </div>
+      <div class="browser-tab">SchoolDesk — Dashboard</div>
+      <div class="browser-url">schooldesk.app/student/dashboard</div>
+    </div>
+
+    <div class="app-topnav">
+      <div class="app-brand">SchoolDesk</div>
+      <div class="app-nav-item active">Dashboard</div>
+      <div class="app-nav-item">Schedule</div>
+      <div class="app-nav-item">Exams</div>
+      <div class="app-nav-item">Results</div>
+    </div>
+
+    <div class="app-body">
+      <div class="greeting">Welcome back, Alex</div>
+
+      <div class="widget-grid">
+        <!-- Today's classes -->
+        <div class="widget-card">
+          <div class="widget-title">Today's Classes</div>
+          <div class="timeline-item">
+            <div class="timeline-time">09:00 – 09:50</div>
+            <div>
+              <div class="timeline-name">Biology 101</div>
+              <div class="timeline-teacher">Mr. Chen</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-time">10:30 – 11:20</div>
+            <div>
+              <div class="timeline-name">English Lit</div>
+              <div class="timeline-teacher">Ms. Nakamura</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-time">13:00 – 13:50</div>
+            <div>
+              <div class="timeline-name">Chemistry</div>
+              <div class="timeline-teacher">Dr. Patel</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-time">14:30 – 15:20</div>
+            <div>
+              <div class="timeline-name">Algebra</div>
+              <div class="timeline-teacher">Ms. Lee</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right column -->
+        <div>
+          <!-- Upcoming exams -->
+          <div class="widget-card">
+            <div class="widget-title">Upcoming Exams</div>
+            <div class="exam-row">
+              <div>
+                <div class="exam-name">Biology Midterm</div>
+                <div class="exam-meta">Fri 08:00</div>
+              </div>
+              <div class="exam-countdown">3 days away</div>
+            </div>
+            <div class="exam-row">
+              <div>
+                <div class="exam-name">English Lit Quiz</div>
+                <div class="exam-meta">Mon 10:30</div>
+              </div>
+              <div class="exam-countdown">6 days away</div>
+            </div>
+          </div>
+
+          <!-- Recent results -->
+          <div class="widget-card">
+            <div class="widget-title">Recent Results</div>
+            <div class="result-row">
+              <div>
+                <div class="result-name">Chemistry Quiz 2</div>
+                <div class="exam-meta">Graded</div>
+              </div>
+              <div class="result-score">92 / 100</div>
+            </div>
+            <div class="result-row">
+              <div>
+                <div class="result-name">Algebra Test 1</div>
+                <div class="exam-meta">Graded</div>
+              </div>
+              <div class="result-score">78 / 100</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================
+     SCREEN 4: STUDENT — RESULTS DETAIL (Chemistry Quiz 2)
+     ================================================================ -->
+<div class="screen-block">
+  <div class="screen-label">Screen 4</div>
+  <div class="screen-title">Student — Results Detail (Chemistry Quiz 2)</div>
+
+  <div class="browser-frame">
+    <div class="browser-bar">
+      <div class="browser-dots">
+        <span class="dot-close"></span>
+        <span class="dot-min"></span>
+        <span class="dot-max"></span>
+      </div>
+      <div class="browser-tab">SchoolDesk — Results</div>
+      <div class="browser-url">schooldesk.app/student/results/chem-quiz-2</div>
+    </div>
+
+    <div class="app-topnav">
+      <div class="app-brand">SchoolDesk</div>
+      <div class="app-nav-item active">Dashboard</div>
+      <div class="app-nav-item">Schedule</div>
+      <div class="app-nav-item">Exams</div>
+      <div class="app-nav-item">Results</div>
+    </div>
+
+    <div class="app-body">
+      <div class="result-header">
+        <div>
+          <div class="section-heading">Chemistry Quiz 2 — Your Results</div>
+          <div class="section-sub">Status: <span class="badge badge-graded" style="vertical-align:middle;">Graded</span></div>
+        </div>
+        <div>
+          <div class="score-display">
+            <span class="score-big">92</span>
+            <span class="score-pct">/ 100 · 92%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="widget-card">
+        <div class="widget-title">Question Breakdown</div>
+
+        <div class="q-row">
+          <div class="q-label">Q1</div>
+          <div class="q-text">What is the chemical symbol for Gold?</div>
+          <div class="q-answer">
+            <div>Your answer: <strong>Au</strong></div>
+          </div>
+          <div class="q-correct">Correct</div>
+        </div>
+
+        <div class="q-row">
+          <div class="q-label">Q2</div>
+          <div class="q-text">Which gas is most abundant in Earth's atmosphere?</div>
+          <div class="q-answer">
+            <div>Your answer: <strong>Nitrogen</strong></div>
+          </div>
+          <div class="q-correct">Correct</div>
+        </div>
+
+        <div class="q-row">
+          <div class="q-label">Q3</div>
+          <div class="q-text">What is the atomic number of Carbon?</div>
+          <div class="q-answer">
+            <div>Your answer: <strong>6</strong></div>
+          </div>
+          <div class="q-correct">Correct</div>
+        </div>
+
+        <div class="q-row">
+          <div class="q-label">Q4</div>
+          <div class="q-text">What type of bond involves sharing electrons?</div>
+          <div class="q-answer">
+            <div>Your answer: <strong>Covalent</strong></div>
+          </div>
+          <div class="q-correct">Correct</div>
+        </div>
+
+        <div class="q-row">
+          <div class="q-label">Q5</div>
+          <div class="q-text">What is the pH of pure water?</div>
+          <div class="q-answer">
+            <div>Your answer: <strong>6</strong></div>
+            <div class="q-expected">Correct answer: <strong>7</strong></div>
+          </div>
+          <div class="q-incorrect">Incorrect</div>
+        </div>
+      </div>
+
+      <div class="note-callout">
+        Your teacher has finalized these results — full correct answer breakdown is now available.
+      </div>
+
+      <a class="back-link">Back to Results</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

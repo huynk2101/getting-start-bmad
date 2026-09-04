@@ -1,0 +1,42 @@
+.s-student-exams-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-gutter);
+}
+
+.s-student-exams-list h2 {
+  margin: 0;
+}
+
+.s-exam-items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-gutter);
+}
+
+.s-exam-item {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-gutter);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.s-exam-item__title {
+  font-weight: var(--weight-label);
+  color: var(--color-text);
+}
+
+.s-exam-item__meta {
+  font-size: var(--text-label);
+  color: var(--color-text-muted);
+}
+
+.s-exam-item__right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}

@@ -1,0 +1,54 @@
+.s-create-exam {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-gutter);
+}
+
+.s-create-exam h2 {
+  margin: 0;
+}
+
+.s-create-exam__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-section);
+}
+
+.s-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.s-form-label {
+  font-size: var(--text-label);
+  font-weight: var(--weight-label);
+  color: var(--color-text);
+}
+
+.s-form-input {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  font-size: var(--text-body);
+  color: var(--color-text);
+  background: var(--color-surface);
+  font-family: var(--font-body);
+}
+
+.s-form-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(106, 110, 158, 0.2);
+}
+
+.s-form-row {
+  display: flex;
+  gap: var(--spacing-gutter);
+}
+
+.s-form-actions {
+  display: flex;
+  justify-content: flex-end;
+}

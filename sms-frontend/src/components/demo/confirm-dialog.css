@@ -1,0 +1,62 @@
+.s-confirm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+}
+
+.s-confirm-dialog {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  padding: var(--spacing-card-padding-lg);
+  max-width: 440px;
+  width: 90%;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+}
+
+.s-confirm-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.s-confirm-dialog__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-gutter);
+}
+
+.s-confirm-dialog__title {
+  margin: 0;
+}
+
+.s-confirm-dialog__desc {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-body);
+}
+
+.s-confirm-dialog__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-gutter);
+  margin-top: var(--spacing-gutter);
+}
+
+.s-confirm-dialog__cancel {
+  padding: 6px 14px;
+  font-size: 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-weight: var(--weight-label);
+}
+
+.s-confirm-dialog__cancel:hover {
+  background: var(--color-background);
+}

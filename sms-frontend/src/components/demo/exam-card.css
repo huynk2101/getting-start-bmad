@@ -1,0 +1,57 @@
+.s-exam-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  padding: var(--spacing-card-padding);
+  transition: background-color 0.15s;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-gutter);
+}
+
+.s-exam-card:hover {
+  background: var(--color-background);
+}
+
+.s-exam-card__main {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--spacing-gutter);
+}
+
+.s-exam-card__title {
+  margin: 0 0 4px 0;
+  font-size: var(--text-body);
+  font-weight: var(--weight-label);
+  color: var(--color-text);
+}
+
+.s-exam-card__meta {
+  margin: 0;
+  font-size: var(--text-label);
+  color: var(--color-text-muted);
+}
+
+.s-exam-card__right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.s-exam-card__countdown {
+  font-size: var(--text-badge);
+  color: var(--color-warning);
+  background: var(--color-badge-pending-bg);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  font-weight: var(--weight-label);
+}
+
+.s-exam-card__action {
+  display: flex;
+  justify-content: flex-end;
+}

@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SMS Color Theme Variations</title>
+<style>
+/*
+  COLOR THEME DEFINITIONS (hex values for easy lift)
+  ====================================================
+
+  VARIATION 1 — "Sunny Chalkboard"
+  Warm cream base, soft coral/peach primary, muted teal secondary.
+  Register: Nostalgic warmth + modern clarity. Feels like a sunlit classroom.
+    Light:
+      --bg:       #FDF6ED
+      --surface:  #FFFFFF
+      --primary:  #E8836A  (soft coral)
+      --secondary:#5BA39B  (muted teal)
+      --accent:   #F4C98A  (warm peach)
+      --success:  #7AB87A
+      --warning:  #E8B84A
+      --danger:   #D46A6A
+      --text:     #3A3226
+      --text-muted:#8A7E72
+      --border:   #E2D8CC
+      --exam-surface: #EEF7F5
+      --exam-calm:   #B8D8D2
+    Dark:
+      --bg:       #1E1A14
+      --surface:  #2A2520
+      --primary:  #E89A84
+      --secondary:#7DC0B8
+      --accent:   #F4D4A0
+      --success:  #8ECF8E
+      --warning:  #F0CC6A
+      --danger:   #E88A8A
+      --text:     #F0E8DE
+      --text-muted:#A09484
+      --border:   #3E3830
+      --exam-surface: #1A2824
+      --exam-calm:   #2A4A40
+
+  VARIATION 2 — "Garden Soft"
+  Muted sage green base, soft lavender accents, gentle pastels.
+  Register: Gentle, nurturing. Feels like a quiet school garden.
+    Light:
+      --bg:       #F2F5F0
+      --surface:  #FAFCFA
+      --primary:  #8FA88A  (sage green)
+      --secondary:#A696C0  (soft lavender)
+      --accent:   #D4C5A0  (warm linen)
+      --success:  #7AAA7A
+      --warning:  #D4AA6A
+      --danger:   #C47A7A
+      --text:     #2E3328
+      --text-muted:#7A8274
+      --border:   #D4DACE
+      --exam-surface: #EEF2EC
+      --exam-calm:   #C8DCC6
+    Dark:
+      --bg:       #161C14
+      --surface:  #222A1E
+      --primary:  #A2C09A
+      --secondary:#B8A8D0
+      --accent:   #E0D4B4
+      --success:  #90C490
+      --warning:  #E0C080
+      --danger:   #D89898
+      --text:     #E8EDE4
+      --text-muted:#90A28A
+      --border:   #344030
+      --exam-surface: #182816
+      --exam-calm:   #2A4A28
+
+  VARIATION 3 — "Book Binder"
+  Warm paper tones, muted indigo/ink accent. Classic school feel.
+  Register: Studious, trustworthy. Feels like a well-kept planner.
+    Light:
+      --bg:       #F5F0E8
+      --surface:  #FDFBF7
+      --primary:  #6A6E9E  (muted indigo)
+      --secondary:#B8846A  (warm leather)
+      --accent:   #C8A878  (goldleaf)
+      --success:  #6A9A6A
+      --warning:  #D4A84A
+      --danger:   #C46A6A
+      --text:     #2C2A30
+      --text-muted:#7A7880
+      --border:   #D8D2C8
+      --exam-surface: #EEECE6
+      --exam-calm:   #C4C0D8
+    Dark:
+      --bg:       #14141A
+      --surface:  #1E1E28
+      --primary:  #8A8EBA
+      --secondary:#D0A080
+      --accent:   #E0C898
+      --success:  #88B888
+      --warning:  #E8C068
+      --danger:   #E08888
+      --text:     #E8E6F0
+      --text-muted:#9A98A4
+      --border:   #34343E
+      --exam-surface: #16161E
+      --exam-calm:   #2A2A48
+
+  VARIATION 4 — "Ocean Calm"
+  Muted aqua/soft blue primary, warm sand accents. Tranquil.
+  Register: Calm, focused. Feels like a quiet coastal study room.
+    Light:
+      --bg:       #F0F4F8
+      --surface:  #FAFCFF
+      --primary:  #6A9EAE  (muted aqua)
+      --secondary:#C4A87A  (warm sand)
+      --accent:   #A0C8D8  (pale sky)
+      --success:  #6AAA88
+      --warning:  #D4AA5A
+      --danger:   #C87070
+      --text:     #283040
+      --text-muted:#7888A0
+      --border:   #C8D2DC
+      --exam-surface: #EAF0F4
+      --exam-calm:   #B8D4E0
+    Dark:
+      --bg:       #121820
+      --surface:  #1A2430
+      --primary:  #88BCC8
+      --secondary:#D8C098
+      --accent:   #B8D8E8
+      --success:  #88CC9E
+      --warning:  #E8C478
+      --danger:   #E09090
+      --text:     #E0E8F2
+      --text-muted:#8898B0
+      --border:   #2A3848
+      --exam-surface: #101C28
+      --exam-calm:   #203848
+
+  VARIATION 5 — "Berry Playful"
+  Muted raspberry primary, warm yellow accents. Energetic but softened.
+  Register: Cheerful, encouraging. Feels like a fun bulletin board.
+    Light:
+      --bg:       #F8F0F2
+      --surface:  #FFFAFB
+      --primary:  #B86A80  (muted raspberry)
+      --secondary:#D4B84A  (warm yellow)
+      --accent:   #D89AAA  (pink tint)
+      --success:  #6AA878
+      --warning:  #E0B850
+      --danger:   #C86868
+      --text:     #342830
+      --text-muted:#8A7882
+      --border:   #E0D0D6
+      --exam-surface: #F2ECF0
+      --exam-calm:   #D8C8D4
+    Dark:
+      --bg:       #1A1418
+      --surface:  #261E22
+      --primary:  #D08A9E
+      --secondary:#E8D068
+      --accent:   #E8B0C2
+      --success:  #88C498
+      --warning:  #F0D070
+      --danger:   #E08888
+      --text:     #F2E8EC
+      --text-muted:#A89098
+      --border:   #3C2E34
+      --exam-surface: #18101A
+      --exam-calm:   #3A2838
+*/
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: #1a1a1a;
+  color: #ddd;
+  padding: 24px;
+}
+h1 { font-size: 20px; margin-bottom: 4px; font-weight: 700; color: #fff; }
+.subtitle { font-size: 13px; color: #999; margin-bottom: 24px; }
+
+.theme-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 32px;
+  border: 1px solid #333;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.theme-label {
+  grid-column: 1 / -1;
+  padding: 14px 20px;
+  background: #222;
+  border-bottom: 1px solid #333;
+}
+.theme-label h2 { font-size: 16px; color: #eee; font-weight: 700; }
+.theme-label p { font-size: 12px; color: #999; margin-top: 2px; }
+
+.panel {
+  padding: 20px;
+  min-height: 520px;
+}
+.panel-header {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  opacity: 0.6;
+}
+
+/* Token chips */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-weight: 500;
+}
+.chip-swatch {
+  width: 12px; height: 12px;
+  border-radius: 3px;
+  border: 1px solid rgba(0,0,0,0.15);
+  flex-shrink: 0;
+}
+
+/* Card mock */
+.dash-card {
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 12px;
+}
+.dash-card h3 {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+.dash-card .meta {
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+.dash-card .exam-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+/* ============================================
+   VARIATION 1 — Sunny Chalkboard
+   ============================================ */
+
+/* Light */
+.t1-light {
+  --bg: #FDF6ED; --surface: #FFFFFF; --primary: #E8836A; --secondary: #5BA39B;
+  --accent: #F4C98A; --success: #7AB87A; --warning: #E8B84A; --danger: #D46A6A;
+  --text: #3A3226; --text-muted: #8A7E72; --border: #E2D8CC;
+  --exam-surface: #EEF7F5; --exam-calm: #B8D8D2;
+}
+.t1-light { background: var(--bg); color: var(--text); }
+.t1-light .chip { background: var(--surface); border: 1px solid var(--border); color: var(--text); }
+.t1-light .dash-card { background: var(--surface); border: 1px solid var(--border); }
+.t1-light .dash-card h3 { color: var(--text); }
+.t1-light .dash-card .meta { color: var(--text-muted); }
+.t1-light .exam-tag { background: var(--exam-surface); color: var(--secondary); border: 1px solid var(--exam-calm); }
+.t1-light .btn-primary { background: var(--primary); color: #fff; }
+
+/* Dark */
+.t1-dark {
+  --bg: #1E1A14; --surface: #2A2520; --primary: #E89A84; --secondary: #7DC0B8;
+  --accent: #F4D4A0; --success: #8ECF8E; --warning: #F0CC6A; --danger: #E88A8A;
+  --text: #F0E8DE; --text-muted: #A09484; --border: #3E3830;
+  --exam-surface: #1A2824; --exam-calm: #2A4A40;
+}
+.t1-dark { background: var(--bg); color: var(--text); }
+.t1-dark .chip { background: var(--surface); border: 1px solid var(--border); color: var(--text); }
+.t1-dark .dash-card { background: var(--surface); border: 1px solid var(--border); }
+.t1-dark .dash-card h3 { color: var(--text); }
+.t1-dark .dash-card .meta { color: var(--text-muted); }
+.t1-dark .exam-tag { background: var(--exam-surface); color: var(--secondary); border: 1px solid var(--exam-calm); }
+.t1-dark .btn-primary { background: var(--primary); color: #1E1A14; }
+
+/* ============================================
+   VARIATION 2 — Garden Soft
+   ============================================ */
+
+/* Light */
+.t2-light {
+  --bg: #F2F5F0; --surface: #FAFCFA; --primary: #8FA88A; --secondary: #A696C0;
+  --accent: #D4C5A0; --success: #7AAA7A; --warning: #D4AA6A; --danger: #C47A7A;
+  --text: #2E3328; --text-muted: #7A8274; --border: #D4DACE;
+  --exam-surface: #EEF2EC; --exam-calm: #C8DCC6;
+}
+.t2-light { background: var(--bg); color: var(--text); }
+.t2-light .chip { background: var(--surface); border: 1px solid var(--border); color: var(--text); }
+.t2-light .dash-card { background: var(--surface); border: 1px solid var(--border); }
+.t2-light .dash-card h3 { color: var(--text); }
+.t2-light .dash-card .meta { color: var(--text-muted); }
+.t2-light .exam-tag { background: var(--exam-surface); color: var(--secondary); border: 1px solid var(--exam-calm); }
+.t2-light .btn-primary { background: var(--primary); color: #fff; }
+
+/* Dark */
+.t2-dark {
+  --bg: #161C14; --surface: #222A1E; --primary: #A2C09A; --secondary: #B8A8D0;
+  --accent: #E0D4B4; --success: #90C490; --warning: #E0C080; --danger: #D89898;
+  --text: #E8EDE4; --text-muted: #90A28A; --border: #344030;
+  --exam-surface: #182816; --exam-calm: #2A4A28;
+}
+.t2-dark { background: var(--bg); color: var(--text); }
+.t2-dark .chip { background: var(--surface); border: 1px solid var(--border); color: var(--text); }
+.t2-dark .dash-card { background: var(--surface); border: 1px solid var(--border); }
+.t2-dark .dash-card h3 { color: var(--text); }
+.t2-dark .dash-card .meta { color: var(--text-muted); }
+.t2-dark .exam-tag { background: var(--exam-surface); color: var(--secondary); border: 1px solid var(--exam-calm); }
+.t2-dark .btn-primary { background: var(--primary); color: #161C14; }
+
+/* ============================================
+   VARIATION 3 — Book Binder
+   ============================================ */
+
+/* Light */
+.t3-light {
+  --bg: #F5F0E8; --surface: #FDFBF7; --primary: #6A6E9E; --secondary: #B8846A;
+  --accent: #C8A878; --success: #6A9A6A; --warning: #D4A84A; --danger: #C46A6A;
+  --text: #2C2A30; --text-muted: #7A7880; --border: #D8D2C8;
+  --exam-surface: #EEECE6; --exam-calm: #C4C0D8;
+}
+.t3-light { background: var(--bg); color: var(--text); }
+.t3-light .chip { background: var(--surface); border: 1px solid var(--border); color: var(--text); }
+.t3-light .dash-card { background: var(--surface); border: 1px solid var(--border); }
+.t3-light .dash-card h3 { color: var(--text); }
+.t3-light .dash-card .meta { color: var(--text-muted); }
+.t3-light .exam-tag { background: var(--exam-surface); color: var(--primary); border: 1px solid var(--exam-calm); }
+.t3-light .btn-primary { background: var(--primary); color: #fff; }
+
+/* Dark */
+.t3-dark {
+  --bg: #14141A; --surface: #1E1E28; --primary: #8A8EBA; --secondary: #D0A080;
+  --accent: #E0C898; --success: #88B888; --warning: #E8C068; --danger: #E08888;
+  --text: #E8E6F0; --text-muted: #9A98A4; --border: #34343E;
+  --exam-surface: #16161E; --exam-calm: #2A2A48;
+}
+.t3-dark { background: var(--bg); color: var(--text); }
+.t3-dark .chip { background: var(--surface); border: 1px solid var(--border); color: var(--text); }
+.t3-dark .dash-card { background: var(--surface); border: 1px solid var(--border); }
+.t3-dark .dash-card h3 { color: var(--text); }
+.t3-dark .dash-card .meta { color: var(--text-muted); }
+.t3-dark .exam-tag { background: var(--exam-surface); color: var(--primary); border: 1px solid var(--exam-calm); }
+.t3-dark .btn-primary { background: var(--primary); color: #14141A; }
+
+/* ============================================
+   VARIATION 4 — Ocean Calm
+   ============================================ */
+
+/* Light */
+.t4-light {
+  --bg: #F0F4F8; --surface: #FAFCFF; --primary: #6A9EAE; --secondary: #C4A87A;
+  --accent: #A0C8D8; --success: #6AAA88; --warning: #D4AA5A; --danger: #C87070;
+  --text: #283040; --text-muted: #7888A0; --border: #C8D2DC;
+  --exam-surface: #EAF0F4; --exam-calm: #B8D4E0;
+}
+.t4-light { background: var(--bg); color: var(--text); }
+.t4-light .chip { background: var(--surface); border: 1px solid var(--border); color: var(--text); }
+.t4-light .dash-card { background: var(--surface); border: 1px solid var(--border); }
+.t4-light .dash-card h3 { color: var(--text); }
+.t4-light .dash-card .meta { color: var(--text-muted); }
+.t4-light .exam-tag { background: var(--exam-surface); color: var(--primary); border: 1px solid var(--exam-calm); }
+.t4-light .btn-primary { background: var(--primary); color: #fff; }
+
+/* Dark */
+.t4-dark {
+  --bg: #121820; --surface: #1A2430; --primary: #88BCC8; --secondary: #D8C098;
+  --accent: #B8D8E8; --success: #88CC9E; --warning: #E8C478; --danger: #E09090;
+  --text: #E0E8F2; --text-muted: #8898B0; --border: #2A3848;
+  --exam-surface: #101C28; --exam-calm: #203848;
+}
+.t4-dark { background: var(--bg); color: var(--text); }
+.t4-dark .chip { background: var(--surface); border: 1px solid var(--border); color: var(--text); }
+.t4-dark .dash-card { background: var(--surface); border: 1px solid var(--border); }
+.t4-dark .dash-card h3 { color: var(--text); }
+.t4-dark .dash-card .meta { color: var(--text-muted); }
+.t4-dark .exam-tag { background: var(--exam-surface); color: var(--primary); border: 1px solid var(--exam-calm); }
+.t4-dark .btn-primary { background: var(--primary); color: #121820; }
+
+/* ============================================
+   VARIATION 5 — Berry Playful
+   ============================================ */
+
+/* Light */
+.t5-light {
+  --bg: #F8F0F2; --surface: #FFFAFB; --primary: #B86A80; --secondary: #D4B84A;
+  --accent: #D89AAA; --success: #6AA878; --warning: #E0B850; --danger: #C86868;
+  --text: #342830; --text-muted: #8A7882; --border: #E0D0D6;
+  --exam-surface: #F2ECF0; --exam-calm: #D8C8D4;
+}
+.t5-light { background: var(--bg); color: var(--text); }
+.t5-light .chip { background: var(--surface); border: 1px solid var(--border); color: var(--text); }
+.t5-light .dash-card { background: var(--surface); border: 1px solid var(--border); }
+.t5-light .dash-card h3 { color: var(--text); }
+.t5-light .dash-card .meta { color: var(--text-muted); }
+.t5-light .exam-tag { background: var(--exam-surface); color: var(--primary); border: 1px solid var(--exam-calm); }
+.t5-light .btn-primary { background: var(--primary); color: #fff; }
+
+/* Dark */
+.t5-dark {
+  --bg: #1A1418; --surface: #261E22; --primary: #D08A9E; --secondary: #E8D068;
+  --accent: #E8B0C2; --success: #88C498; --warning: #F0D070; --danger: #E08888;
+  --text: #F2E8EC; --text-muted: #A89098; --border: #3C2E34;
+  --exam-surface: #18101A; --exam-calm: #3A2838;
+}
+.t5-dark { background: var(--bg); color: var(--text); }
+.t5-dark .chip { background: var(--surface); border: 1px solid var(--border); color: var(--text); }
+.t5-dark .dash-card { background: var(--surface); border: 1px solid var(--border); }
+.t5-dark .dash-card h3 { color: var(--text); }
+.t5-dark .dash-card .meta { color: var(--text-muted); }
+.t5-dark .exam-tag { background: var(--exam-surface); color: var(--primary); border: 1px solid var(--exam-calm); }
+.t5-dark .btn-primary { background: var(--primary); color: #1A1418; }
+
+/* Shared UI element */
+.btn-primary {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  border: none;
+  cursor: default;
+}
+.greeting { font-size: 18px; font-weight: 700; margin-bottom: 16px; }
+</style>
+</head>
+<body>
+
+<h1>Student Management System — Color Theme Variations</h1>
+<p class="subtitle">5 themes x light + dark | Warm &amp; friendly school register | Desktop-focused, responsive-ready</p>
+
+<!-- ========== VARIATION 1 ========== -->
+<div class="theme-row">
+  <div class="theme-label">
+    <h2>1. Sunny Chalkboard</h2>
+    <p>Register: Nostalgic warmth + modern clarity. Sunlit classroom energy.</p>
+  </div>
+
+  <!-- Light -->
+  <div class="panel t1-light">
+    <div class="panel-header">Light</div>
+    <div class="chips">
+      <span class="chip"><span class="chip-swatch" style="background:#FDF6ED"></span>bg</span>
+      <span class="chip"><span class="chip-swatch" style="background:#FFFFFF"></span>surface</span>
+      <span class="chip"><span class="chip-swatch" style="background:#E8836A"></span>primary</span>
+      <span class="chip"><span class="chip-swatch" style="background:#5BA39B"></span>secondary</span>
+      <span class="chip"><span class="chip-swatch" style="background:#F4C98A"></span>accent</span>
+      <span class="chip"><span class="chip-swatch" style="background:#7AB87A"></span>success</span>
+      <span class="chip"><span class="chip-swatch" style="background:#E8B84A"></span>warning</span>
+      <span class="chip"><span class="chip-swatch" style="background:#D46A6A"></span>danger</span>
+      <span class="chip"><span class="chip-swatch" style="background:#3A3226"></span>text</span>
+      <span class="chip"><span class="chip-swatch" style="background:#8A7E72"></span>text-muted</span>
+      <span class="chip"><span class="chip-swatch" style="background:#E2D8CC"></span>border</span>
+      <span class="chip"><span class="chip-swatch" style="background:#EEF7F5"></span>exam-surface</span>
+      <span class="chip"><span class="chip-swatch" style="background:#B8D8D2"></span>exam-calm</span>
+    </div>
+    <div class="greeting">Good morning, Ms. Tanaka</div>
+    <div class="dash-card">
+      <h3>Biology 101</h3>
+      <div class="meta">28 students &middot; 09:00 &mdash; Room 204</div>
+      <span class="exam-tag">Biology Midterm — Fri 08:00</span>
+    </div>
+    <div class="dash-card">
+      <h3>English Literature</h3>
+      <div class="meta">24 students &middot; 10:30 &mdash; Room 112</div>
+      <span class="btn-primary">Open Class</span>
+    </div>
+  </div>
+
+  <!-- Dark -->
+  <div class="panel t1-dark">
+    <div class="panel-header">Dark</div>
+    <div class="chips">
+      <span class="chip"><span class="chip-swatch" style="background:#1E1A14"></span>bg</span>
+      <span class="chip"><span class="chip-swatch" style="background:#2A2520"></span>surface</span>
+      <span class="chip"><span class="chip-swatch" style="background:#E89A84"></span>primary</span>
+      <span class="chip"><span class="chip-swatch" style="background:#7DC0B8"></span>secondary</span>
+      <span class="chip"><span class="chip-swatch" style="background:#F4D4A0"></span>accent</span>
+      <span class="chip"><span class="chip-swatch" style="background:#8ECF8E"></span>success</span>
+      <span class="chip"><span class="chip-swatch" style="background:#F0CC6A"></span>warning</span>
+      <span class="chip"><span class="chip-swatch" style="background:#E88A8A"></span>danger</span>
+      <span class="chip"><span class="chip-swatch" style="background:#F0E8DE"></span>text</span>
+      <span class="chip"><span class="chip-swatch" style="background:#A09484"></span>text-muted</span>
+      <span class="chip"><span class="chip-swatch" style="background:#3E3830"></span>border</span>
+      <span class="chip"><span class="chip-swatch" style="background:#1A2824"></span>exam-surface</span>
+      <span class="chip"><span class="chip-swatch" style="background:#2A4A40"></span>exam-calm</span>
+    </div>
+    <div class="greeting">Good morning, Ms. Tanaka</div>
+    <div class="dash-card">
+      <h3>Biology 101</h3>
+      <div class="meta">28 students &middot; 09:00 &mdash; Room 204</div>
+      <span class="exam-tag">Biology Midterm — Fri 08:00</span>
+    </div>
+    <div class="dash-card">
+      <h3>English Literature</h3>
+      <div class="meta">24 students &middot; 10:30 &mdash; Room 112</div>
+      <span class="btn-primary">Open Class</span>
+    </div>
+  </div>
+</div>
+
+<!-- ========== VARIATION 2 ========== -->
+<div class="theme-row">
+  <div class="theme-label">
+    <h2>2. Garden Soft</h2>
+    <p>Register: Gentle, nurturing. Quiet school garden calm.</p>
+  </div>
+
+  <div class="panel t2-light">
+    <div class="panel-header">Light</div>
+    <div class="chips">
+      <span class="chip"><span class="chip-swatch" style="background:#F2F5F0"></span>bg</span>
+      <span class="chip"><span class="chip-swatch" style="background:#FAFCFA"></span>surface</span>
+      <span class="chip"><span class="chip-swatch" style="background:#8FA88A"></span>primary</span>
+      <span class="chip"><span class="chip-swatch" style="background:#A696C0"></span>secondary</span>
+      <span class="chip"><span class="chip-swatch" style="background:#D4C5A0"></span>accent</span>
+      <span class="chip"><span class="chip-swatch" style="background:#7AAA7A"></span>success</span>
+      <span class="chip"><span class="chip-swatch" style="background:#D4AA6A"></span>warning</span>
+      <span class="chip"><span class="chip-swatch" style="background:#C47A7A"></span>danger</span>
+      <span class="chip"><span class="chip-swatch" style="background:#2E3328"></span>text</span>
+      <span class="chip"><span class="chip-swatch" style="background:#7A8274"></span>text-muted</span>
+      <span class="chip"><span class="chip-swatch" style="background:#D4DACE"></span>border</span>
+      <span class="chip"><span class="chip-swatch" style="background:#EEF2EC"></span>exam-surface</span>
+      <span class="chip"><span class="chip-swatch" style="background:#C8DCC6"></span>exam-calm</span>
+    </div>
+    <div class="greeting">Good morning, Ms. Tanaka</div>
+    <div class="dash-card">
+      <h3>Biology 101</h3>
+      <div class="meta">28 students &middot; 09:00 &mdash; Room 204</div>
+      <span class="exam-tag">Biology Midterm — Fri 08:00</span>
+    </div>
+    <div class="dash-card">
+      <h3>English Literature</h3>
+      <div class="meta">24 students &middot; 10:30 &mdash; Room 112</div>
+      <span class="btn-primary">Open Class</span>
+    </div>
+  </div>
+
+  <div class="panel t2-dark">
+    <div class="panel-header">Dark</div>
+    <div class="chips">
+      <span class="chip"><span class="chip-swatch" style="background:#161C14"></span>bg</span>
+      <span class="chip"><span class="chip-swatch" style="background:#222A1E"></span>surface</span>
+      <span class="chip"><span class="chip-swatch" style="background:#A2C09A"></span>primary</span>
+      <span class="chip"><span class="chip-swatch" style="background:#B8A8D0"></span>secondary</span>
+      <span class="chip"><span class="chip-swatch" style="background:#E0D4B4"></span>accent</span>
+      <span class="chip"><span class="chip-swatch" style="background:#90C490"></span>success</span>
+      <span class="chip"><span class="chip-swatch" style="background:#E0C080"></span>warning</span>
+      <span class="chip"><span class="chip-swatch" style="background:#D89898"></span>danger</span>
+      <span class="chip"><span class="chip-swatch" style="background:#E8EDE4"></span>text</span>
+      <span class="chip"><span class="chip-swatch" style="background:#90A28A"></span>text-muted</span>
+      <span class="chip"><span class="chip-swatch" style="background:#344030"></span>border</span>
+      <span class="chip"><span class="chip-swatch" style="background:#182816"></span>exam-surface</span>
+      <span class="chip"><span class="chip-swatch" style="background:#2A4A28"></span>exam-calm</span>
+    </div>
+    <div class="greeting">Good morning, Ms. Tanaka</div>
+    <div class="dash-card">
+      <h3>Biology 101</h3>
+      <div class="meta">28 students &middot; 09:00 &mdash; Room 204</div>
+      <span class="exam-tag">Biology Midterm — Fri 08:00</span>
+    </div>
+    <div class="dash-card">
+      <h3>English Literature</h3>
+      <div class="meta">24 students &middot; 10:30 &mdash; Room 112</div>
+      <span class="btn-primary">Open Class</span>
+    </div>
+  </div>
+</div>
+
+<!-- ========== VARIATION 3 ========== -->
+<div class="theme-row">
+  <div class="theme-label">
+    <h2>3. Book Binder</h2>
+    <p>Register: Studious, trustworthy. Well-kept planner energy.</p>
+  </div>
+
+  <div class="panel t3-light">
+    <div class="panel-header">Light</div>
+    <div class="chips">
+      <span class="chip"><span class="chip-swatch" style="background:#F5F0E8"></span>bg</span>
+      <span class="chip"><span class="chip-swatch" style="background:#FDFBF7"></span>surface</span>
+      <span class="chip"><span class="chip-swatch" style="background:#6A6E9E"></span>primary</span>
+      <span class="chip"><span class="chip-swatch" style="background:#B8846A"></span>secondary</span>
+      <span class="chip"><span class="chip-swatch" style="background:#C8A878"></span>accent</span>
+      <span class="chip"><span class="chip-swatch" style="background:#6A9A6A"></span>success</span>
+      <span class="chip"><span class="chip-swatch" style="background:#D4A84A"></span>warning</span>
+      <span class="chip"><span class="chip-swatch" style="background:#C46A6A"></span>danger</span>
+      <span class="chip"><span class="chip-swatch" style="background:#2C2A30"></span>text</span>
+      <span class="chip"><span class="chip-swatch" style="background:#7A7880"></span>text-muted</span>
+      <span class="chip"><span class="chip-swatch" style="background:#D8D2C8"></span>border</span>
+      <span class="chip"><span class="chip-swatch" style="background:#EEECE6"></span>exam-surface</span>
+      <span class="chip"><span class="chip-swatch" style="background:#C4C0D8"></span>exam-calm</span>
+    </div>
+    <div class="greeting">Good morning, Ms. Tanaka</div>
+    <div class="dash-card">
+      <h3>Biology 101</h3>
+      <div class="meta">28 students &middot; 09:00 &mdash; Room 204</div>
+      <span class="exam-tag">Biology Midterm — Fri 08:00</span>
+    </div>
+    <div class="dash-card">
+      <h3>English Literature</h3>
+      <div class="meta">24 students &middot; 10:30 &mdash; Room 112</div>
+      <span class="btn-primary">Open Class</span>
+    </div>
+  </div>
+
+  <div class="panel t3-dark">
+    <div class="panel-header">Dark</div>
+    <div class="chips">
+      <span class="chip"><span class="chip-swatch" style="background:#14141A"></span>bg</span>
+      <span class="chip"><span class="chip-swatch" style="background:#1E1E28"></span>surface</span>
+      <span class="chip"><span class="chip-swatch" style="background:#8A8EBA"></span>primary</span>
+      <span class="chip"><span class="chip-swatch" style="background:#D0A080"></span>secondary</span>
+      <span class="chip"><span class="chip-swatch" style="background:#E0C898"></span>accent</span>
+      <span class="chip"><span class="chip-swatch" style="background:#88B888"></span>success</span>
+      <span class="chip"><span class="chip-swatch" style="background:#E8C068"></span>warning</span>
+      <span class="chip"><span class="chip-swatch" style="background:#E08888"></span>danger</span>
+      <span class="chip"><span class="chip-swatch" style="background:#E8E6F0"></span>text</span>
+      <span class="chip"><span class="chip-swatch" style="background:#9A98A4"></span>text-muted</span>
+      <span class="chip"><span class="chip-swatch" style="background:#34343E"></span>border</span>
+      <span class="chip"><span class="chip-swatch" style="background:#16161E"></span>exam-surface</span>
+      <span class="chip"><span class="chip-swatch" style="background:#2A2A48"></span>exam-calm</span>
+    </div>
+    <div class="greeting">Good morning, Ms. Tanaka</div>
+    <div class="dash-card">
+      <h3>Biology 101</h3>
+      <div class="meta">28 students &middot; 09:00 &mdash; Room 204</div>
+      <span class="exam-tag">Biology Midterm — Fri 08:00</span>
+    </div>
+    <div class="dash-card">
+      <h3>English Literature</h3>
+      <div class="meta">24 students &middot; 10:30 &mdash; Room 112</div>
+      <span class="btn-primary">Open Class</span>
+    </div>
+  </div>
+</div>
+
+<!-- ========== VARIATION 4 ========== -->
+<div class="theme-row">
+  <div class="theme-label">
+    <h2>4. Ocean Calm</h2>
+    <p>Register: Calm, focused. Quiet coastal study room tranquility.</p>
+  </div>
+
+  <div class="panel t4-light">
+    <div class="panel-header">Light</div>
+    <div class="chips">
+      <span class="chip"><span class="chip-swatch" style="background:#F0F4F8"></span>bg</span>
+      <span class="chip"><span class="chip-swatch" style="background:#FAFCFF"></span>surface</span>
+      <span class="chip"><span class="chip-swatch" style="background:#6A9EAE"></span>primary</span>
+      <span class="chip"><span class="chip-swatch" style="background:#C4A87A"></span>secondary</span>
+      <span class="chip"><span class="chip-swatch" style="background:#A0C8D8"></span>accent</span>
+      <span class="chip"><span class="chip-swatch" style="background:#6AAA88"></span>success</span>
+      <span class="chip"><span class="chip-swatch" style="background:#D4AA5A"></span>warning</span>
+      <span class="chip"><span class="chip-swatch" style="background:#C87070"></span>danger</span>
+      <span class="chip"><span class="chip-swatch" style="background:#283040"></span>text</span>
+      <span class="chip"><span class="chip-swatch" style="background:#7888A0"></span>text-muted</span>
+      <span class="chip"><span class="chip-swatch" style="background:#C8D2DC"></span>border</span>
+      <span class="chip"><span class="chip-swatch" style="background:#EAF0F4"></span>exam-surface</span>
+      <span class="chip"><span class="chip-swatch" style="background:#B8D4E0"></span>exam-calm</span>
+    </div>
+    <div class="greeting">Good morning, Ms. Tanaka</div>
+    <div class="dash-card">
+      <h3>Biology 101</h3>
+      <div class="meta">28 students &middot; 09:00 &mdash; Room 204</div>
+      <span class="exam-tag">Biology Midterm — Fri 08:00</span>
+    </div>
+    <div class="dash-card">
+      <h3>English Literature</h3>
+      <div class="meta">24 students &middot; 10:30 &mdash; Room 112</div>
+      <span class="btn-primary">Open Class</span>
+    </div>
+  </div>
+
+  <div class="panel t4-dark">
+    <div class="panel-header">Dark</div>
+    <div class="chips">
+      <span class="chip"><span class="chip-swatch" style="background:#121820"></span>bg</span>
+      <span class="chip"><span class="chip-swatch" style="background:#1A2430"></span>surface</span>
+      <span class="chip"><span class="chip-swatch" style="background:#88BCC8"></span>primary</span>
+      <span class="chip"><span class="chip-swatch" style="background:#D8C098"></span>secondary</span>
+      <span class="chip"><span class="chip-swatch" style="background:#B8D8E8"></span>accent</span>
+      <span class="chip"><span class="chip-swatch" style="background:#88CC9E"></span>success</span>
+      <span class="chip"><span class="chip-swatch" style="background:#E8C478"></span>warning</span>
+      <span class="chip"><span class="chip-swatch" style="background:#E09090"></span>danger</span>
+      <span class="chip"><span class="chip-swatch" style="background:#E0E8F2"></span>text</span>
+      <span class="chip"><span class="chip-swatch" style="background:#8898B0"></span>text-muted</span>
+      <span class="chip"><span class="chip-swatch" style="background:#2A3848"></span>border</span>
+      <span class="chip"><span class="chip-swatch" style="background:#101C28"></span>exam-surface</span>
+      <span class="chip"><span class="chip-swatch" style="background:#203848"></span>exam-calm</span>
+    </div>
+    <div class="greeting">Good morning, Ms. Tanaka</div>
+    <div class="dash-card">
+      <h3>Biology 101</h3>
+      <div class="meta">28 students &middot; 09:00 &mdash; Room 204</div>
+      <span class="exam-tag">Biology Midterm — Fri 08:00</span>
+    </div>
+    <div class="dash-card">
+      <h3>English Literature</h3>
+      <div class="meta">24 students &middot; 10:30 &mdash; Room 112</div>
+      <span class="btn-primary">Open Class</span>
+    </div>
+  </div>
+</div>
+
+<!-- ========== VARIATION 5 ========== -->
+<div class="theme-row">
+  <div class="theme-label">
+    <h2>5. Berry Playful</h2>
+    <p>Register: Cheerful, encouraging. Fun bulletin board energy, softened.</p>
+  </div>
+
+  <div class="panel t5-light">
+    <div class="panel-header">Light</div>
+    <div class="chips">
+      <span class="chip"><span class="chip-swatch" style="background:#F8F0F2"></span>bg</span>
+      <span class="chip"><span class="chip-swatch" style="background:#FFFAFB"></span>surface</span>
+      <span class="chip"><span class="chip-swatch" style="background:#B86A80"></span>primary</span>
+      <span class="chip"><span class="chip-swatch" style="background:#D4B84A"></span>secondary</span>
+      <span class="chip"><span class="chip-swatch" style="background:#D89AAA"></span>accent</span>
+      <span class="chip"><span class="chip-swatch" style="background:#6AA878"></span>success</span>
+      <span class="chip"><span class="chip-swatch" style="background:#E0B850"></span>warning</span>
+      <span class="chip"><span class="chip-swatch" style="background:#C86868"></span>danger</span>
+      <span class="chip"><span class="chip-swatch" style="background:#342830"></span>text</span>
+      <span class="chip"><span class="chip-swatch" style="background:#8A7882"></span>text-muted</span>
+      <span class="chip"><span class="chip-swatch" style="background:#E0D0D6"></span>border</span>
+      <span class="chip"><span class="chip-swatch" style="background:#F2ECF0"></span>exam-surface</span>
+      <span class="chip"><span class="chip-swatch" style="background:#D8C8D4"></span>exam-calm</span>
+    </div>
+    <div class="greeting">Good morning, Ms. Tanaka</div>
+    <div class="dash-card">
+      <h3>Biology 101</h3>
+      <div class="meta">28 students &middot; 09:00 &mdash; Room 204</div>
+      <span class="exam-tag">Biology Midterm — Fri 08:00</span>
+    </div>
+    <div class="dash-card">
+      <h3>English Literature</h3>
+      <div class="meta">24 students &middot; 10:30 &mdash; Room 112</div>
+      <span class="btn-primary">Open Class</span>
+    </div>
+  </div>
+
+  <div class="panel t5-dark">
+    <div class="panel-header">Dark</div>
+    <div class="chips">
+      <span class="chip"><span class="chip-swatch" style="background:#1A1418"></span>bg</span>
+      <span class="chip"><span class="chip-swatch" style="background:#261E22"></span>surface</span>
+      <span class="chip"><span class="chip-swatch" style="background:#D08A9E"></span>primary</span>
+      <span class="chip"><span class="chip-swatch" style="background:#E8D068"></span>secondary</span>
+      <span class="chip"><span class="chip-swatch" style="background:#E8B0C2"></span>accent</span>
+      <span class="chip"><span class="chip-swatch" style="background:#88C498"></span>success</span>
+      <span class="chip"><span class="chip-swatch" style="background:#F0D070"></span>warning</span>
+      <span class="chip"><span class="chip-swatch" style="background:#E08888"></span>danger</span>
+      <span class="chip"><span class="chip-swatch" style="background:#F2E8EC"></span>text</span>
+      <span class="chip"><span class="chip-swatch" style="background:#A89098"></span>text-muted</span>
+      <span class="chip"><span class="chip-swatch" style="background:#3C2E34"></span>border</span>
+      <span class="chip"><span class="chip-swatch" style="background:#18101A"></span>exam-surface</span>
+      <span class="chip"><span class="chip-swatch" style="background:#3A2838"></span>exam-calm</span>
+    </div>
+    <div class="greeting">Good morning, Ms. Tanaka</div>
+    <div class="dash-card">
+      <h3>Biology 101</h3>
+      <div class="meta">28 students &middot; 09:00 &mdash; Room 204</div>
+      <span class="exam-tag">Biology Midterm — Fri 08:00</span>
+    </div>
+    <div class="dash-card">
+      <h3>English Literature</h3>
+      <div class="meta">24 students &middot; 10:30 &mdash; Room 112</div>
+      <span class="btn-primary">Open Class</span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

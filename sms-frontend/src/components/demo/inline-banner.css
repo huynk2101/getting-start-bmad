@@ -1,0 +1,14 @@
+.s-inline-banner {
+  background: var(--color-exam-surface);
+  border-radius: var(--radius-md);
+  padding: 12px var(--spacing-gutter);
+  font-size: 13px;
+  color: var(--color-text);
+}
+
+.s-inline-banner--note {
+  background: var(--color-exam-surface);
+  border-left: 3px solid var(--color-accent);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  margin-top: var(--spacing-gutter);
+}

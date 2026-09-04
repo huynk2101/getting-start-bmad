@@ -1,0 +1,14 @@
+.s-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+}
+
+.s-card--default {
+  padding: var(--spacing-card-padding);
+}
+
+.s-card--lg {
+  padding: var(--spacing-card-padding-lg);
+}

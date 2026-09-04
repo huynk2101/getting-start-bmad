@@ -1,0 +1,39 @@
+.s-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: var(--text-label);
+  font-weight: var(--weight-label);
+  line-height: var(--lh-label);
+  cursor: pointer;
+  color: var(--color-primary-foreground);
+  background-color: var(--color-primary);
+  transition: background-color 120ms ease;
+}
+
+.s-button--md {
+  padding: 6px 14px;
+}
+
+.s-button--sm {
+  padding: 4px 10px;
+}
+
+.s-button:disabled {
+  background-color: var(--color-primary-disabled);
+  cursor: not-allowed;
+}
+
+.s-button:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .s-button {
+    transition: none;
+  }
+}

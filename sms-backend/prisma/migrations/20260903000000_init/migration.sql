@@ -1,0 +1,2 @@
+-- Stub migration: Story 1.1 ships only a minimal schema.
+-- Authoritative entities (User, Class, etc.) land in Story 1.4.

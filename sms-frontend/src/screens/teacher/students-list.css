@@ -1,0 +1,9 @@
+.s-students-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-gutter);
+}
+
+.s-students-list h2 {
+  margin: 0;
+}

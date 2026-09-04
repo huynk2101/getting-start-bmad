@@ -1,0 +1,19 @@
+.s-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--spacing-gutter);
+  max-width: 320px;
+  margin: 0 auto;
+  padding: var(--spacing-section);
+}
+
+.s-empty-state__heading {
+  margin: 0;
+}
+
+.s-empty-state__body {
+  margin: 0;
+  color: var(--color-text-muted);
+}
