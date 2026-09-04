@@ -142,6 +142,24 @@ All commands run from `sms-backend` (the package root), unless noted.
 - [x] [Review][Defer] Co-teacher / multi-class exam / multi-tenancy -- out of 1.4 scope (single-tenant assumption)
 - [x] [Review][Defer] `prisma migrate dev` interactive/CI behavior -- non-blocking local dev
 
+### Review Findings (2nd pass — bmad-code-review, 2026-09-04)
+
+**Decision-needed:** none.
+
+**Patch:** none (acceptance-auditor confirmed all ACs pass; substantive patches were applied during the bmad-build review).
+
+**Deferred:**
+- [x] [Review][Defer] Schedule slot ordering (`startTime` must be < `endTime`) not DB-validated [schema.prisma:68] — defer, scheduling/app-layer rule
+- [x] [Review][Defer] Domain CHECKs missing: `Exam.durationMinutes > 0`, `Question.points > 0`, `Score.pointsEarned >= 0` and `<= pointsPossible`, `pointsPossible > 0` [schema.prisma:81,93,127,128] — defer, Epics 3-4 scoring rules
+- [x] [Review][Defer] `Question.correctAnswer` not validated against `options` [schema.prisma:98] — defer, Epic 3 question contract
+- [x] [Review][Defer] No constraint prevents `Exam.scheduledAt` in the past [schema.prisma:82] — defer, Epic 3 creation-time rule (NEW this pass)
+- [x] [Review][Defer] `SubmissionStatus` has no `GRADED` state / grading linkage [schema.prisma:26] — defer, Epic 4 grading lifecycle
+- [x] [Review][Defer] Seed idempotency, CHECK constraints, `timestamptz`, FK cascade/restrict verified only by manual DB commands, no automated backend DB tests — defer, no backend test harness
+- [x] [Review][Defer] Username uniqueness is case-sensitive (`Teacher` vs `teacher`) [schema.prisma:33] — defer, Story 1.5 identifier contract
+- [x] [Review][Defer] Teacher could be self-enrolled in own class via m2m [schema.prisma:47] — defer, Epic 2 RBAC/enrollment guard
+
+**Dismissed as noise/false-positive (~11):** teacherId-reassign "gap" (seed DOES reassign in upsert `update`), "PrismaPg never instantiated" (it is, seed.ts:10), duplicate-schedule concurrency + `@@unique(classId,dayOfWeek)` (spec-resolved, no unique wanted; manual/serial seed), `Restrict`-prevents-teacher-deletion (intentional matrix), per-user hash cost (intentional), unused email/subject/topic/role-index/status-index (no requirement), doc-comment request (cosmetic), verify-gap disconnect-robustness nuance.
+
 ## Suggested Review Order
 
 **Schema: entity model & relations**

@@ -1,6 +1,8 @@
 import "dotenv/config";
 import express from "express";
+import cookieParser from "cookie-parser";
 import { healthRouter } from "./routes/health.js";
+import { authRouter } from "./routes/auth.js";
 
 if (!process.env.DATABASE_URL) {
   console.error("FATAL: DATABASE_URL environment variable is not set.");
@@ -16,7 +18,9 @@ if (Number.isNaN(port) || port <= 0) {
 }
 
 app.use(express.json());
+app.use(cookieParser());
 app.use("/api", healthRouter);
+app.use("/api", authRouter);
 
 app.listen(port, () => {
   console.log(`SMS Backend listening on port ${port}`);

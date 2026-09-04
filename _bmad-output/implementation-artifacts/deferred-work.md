@@ -112,3 +112,36 @@ The following Story 1.2 deferrals were intentionally resolved while building Sto
 - source_spec: `_bmad-output/implementation-artifacts/spec-1-4-database-schema-seed-data.md`
   summary: Seed idempotency and the `timestamptz` column contract are verified only by manual DB commands, not an automated test.
   evidence: Real — surfaced by verification-gap. The repo has no DB integration test harness; the spec deliberately used manual `db:seed` ×2 + `information_schema` queries. Add automated integration tests (Vitest 4 is installed) against a test database when test infra for the backend lands.
+- source_spec: `_bmad-output/implementation-artifacts/spec-1-4-database-schema-seed-data.md`
+  summary: No constraint prevents `Exam.scheduledAt` from being in the past, so an exam can be created already-overdue.
+  evidence: Real — surfaced by edge-case-hunter (2nd review pass). Far backstop is `scheduledAt >= now()` at creation; belongs with the exam-creation scheduling story (Epic 3), which owns creation-time rules — the schema locks the common case the DB-only 1.4 needs.
+
+## Deferred from: code review of Story 1.5 implementation (2026-09-04)
+
+- source_spec: `_bmad-output/implementation-artifacts/spec-1-5-user-login-fr-23-nfr-6.md`
+  summary: No brute-force / rate limiting on the login endpoint.
+  evidence: Real — surfaced by blind-hunter. `POST /api/auth/login` has no throttling, lockout, or failed-attempt tracking. Rate limiting belongs with production hardening, not the initial auth story.
+- source_spec: `_bmad-output/implementation-artifacts/spec-1-5-user-login-fr-23-nfr-6.md`
+  summary: No CSRF protection for state-changing cookie-based endpoints.
+  evidence: Real — surfaced by blind-hunter. Mitigation relies entirely on `sameSite: strict`; no CSRF token. SameSite is sufficient for same-origin v1; CSRF tokens belong with cross-origin or production hardening.
+- source_spec: `_bmad-output/implementation-artifacts/spec-1-5-user-login-fr-23-nfr-6.md`
+  summary: Logout does not invalidate the JWT server-side.
+  evidence: Real — surfaced by blind-hunter. `clearCookie` only drops the client cookie; a captured token remains valid for 24h. Token blacklisting/revocation belongs with production hardening.
+- source_spec: `_bmad-output/implementation-artifacts/spec-1-5-user-login-fr-23-nfr-6.md`
+  summary: No backend tests for auth routes (login, /me, logout).
+  evidence: Real — surfaced by verification-gap. The backend has no test framework configured; no test script in package.json. Auth behavioral tests belong when backend test infrastructure lands.
+- source_spec: `_bmad-output/implementation-artifacts/spec-1-5-user-login-fr-23-nfr-6.md`
+  summary: `requireAuth` middleware is defined but never applied to any route.
+  evidence: Real — surfaced by verification-gap. The middleware is created for Story 1.6 RBAC but not wired to any route in this story. Dead code from the routing perspective; adoption happens in Story 1.6.
+- source_spec: `_bmad-output/implementation-artifacts/spec-1-5-user-login-fr-23-nfr-6.md`
+  summary: `requireAuth` trusts JWT role claims without rechecking the database.
+  evidence: Real — surfaced by blind-hunter. If a user's role is changed after login, they keep the stale role from the token until expiry. DB-backed role verification belongs with production hardening.
+- source_spec: `_bmad-output/implementation-artifacts/spec-1-5-user-login-fr-23-nfr-6.md`
+  summary: Backend never shuts down Prisma — no SIGTERM/SIGINT handler.
+  evidence: Real — surfaced by blind-hunter. Connection leak on restarts. Graceful shutdown belongs with production hardening (pre-existing deferral from Story 1.1).
+- source_spec: `_bmad-output/implementation-artifacts/spec-1-5-user-login-fr-23-nfr-6.md`
+  summary: Frontend API base path is hardcoded to `/api/...` relying on Vite proxy.
+  evidence: Real — surfaced by blind-hunter. No `VITE_API_BASE` configurable base. Breaks in non-dev deployments. Deployment configuration belongs with production hardening.
+- source_spec: `_bmad-output/implementation-artifacts/spec-1-5-user-login-fr-23-nfr-6.md`
+  summary: Two sources of truth for routing remain — React Router and mock store.
+  evidence: Real — surfaced by blind-hunter. `useSyncStoreToUrl` reconciles them opportunistically. Full React Router migration is the intended follow-on per the spec's Design Notes.

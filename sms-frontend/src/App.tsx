@@ -1,3 +1,6 @@
+import { useEffect } from "react";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+import { AuthProvider, useAuth } from "./store/auth.js";
 import { useStore } from "./mock/store.js";
 import { AppShell } from "./demo/demo-layout.js";
 import { RoleLogin } from "./screens/role-login.js";
@@ -38,12 +41,25 @@ import "./screens/student/exam-taking.css";
 import "./screens/student/student-results-list.css";
 import "./screens/student/student-result-detail.css";
 
-function DemoRouter() {
-  const { route, role } = useStore();
+function useSyncStoreToUrl() {
+  const { route, navigate } = useStore();
+  const location = useLocation();
 
-  if (role === null || route.screen === "role-login") {
-    return <RoleLogin />;
-  }
+  useEffect(() => {
+    if (location.pathname === "/login") return;
+    if (route.screen === "role-login") {
+      if (location.pathname.startsWith("/teacher")) {
+        navigate({ screen: "teacher-dashboard" });
+      } else if (location.pathname.startsWith("/student")) {
+        navigate({ screen: "student-dashboard" });
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.pathname]);
+}
+
+function TeacherShell() {
+  const { route } = useStore();
 
   let content: React.ReactNode = null;
 
@@ -81,6 +97,19 @@ function DemoRouter() {
     case "teacher-results-detail":
       content = <ResultsDetail examId={route.params.examId} />;
       break;
+    default:
+      content = <TeacherDashboard />;
+  }
+
+  return <AppShell>{content}</AppShell>;
+}
+
+function StudentShell() {
+  const { route } = useStore();
+
+  let content: React.ReactNode = null;
+
+  switch (route.screen) {
     case "student-dashboard":
       content = <StudentDashboard />;
       break;
@@ -99,6 +128,8 @@ function DemoRouter() {
     case "student-result-detail":
       content = <StudentResultDetail examId={route.params.examId} />;
       break;
+    default:
+      content = <StudentDashboard />;
   }
 
   if (route.screen === "student-exam-taking") {
@@ -108,6 +139,56 @@ function DemoRouter() {
   return <AppShell>{content}</AppShell>;
 }
 
+function ProtectedRoute({ role }: { role: "TEACHER" | "STUDENT" }) {
+  const { user, loading } = useAuth();
+
+  if (loading) {
+    return null;
+  }
+
+  if (!user) {
+    return <Navigate to="/login" replace />;
+  }
+
+  if (user.role !== role) {
+    return <Navigate to="/login" replace />;
+  }
+
+  return null;
+}
+
+function RoleRouter() {
+  useSyncStoreToUrl();
+  return (
+    <Routes>
+      <Route path="/login" element={<RoleLogin />} />
+      <Route
+        path="/teacher/*"
+        element={
+          <>
+            <ProtectedRoute role="TEACHER" />
+            <TeacherShell />
+          </>
+        }
+      />
+      <Route
+        path="/student/*"
+        element={
+          <>
+            <ProtectedRoute role="STUDENT" />
+            <StudentShell />
+          </>
+        }
+      />
+      <Route path="*" element={<Navigate to="/login" replace />} />
+    </Routes>
+  );
+}
+
 export function App() {
-  return <DemoRouter />;
+  return (
+    <AuthProvider>
+      <RoleRouter />
+    </AuthProvider>
+  );
 }

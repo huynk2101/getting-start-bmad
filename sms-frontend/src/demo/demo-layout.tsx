@@ -1,6 +1,7 @@
 import { type ReactNode, useCallback, useEffect, useRef } from "react";
 import { useStore, type Route } from "../mock/store.js";
 import { useToast } from "../components/index.js";
+import { useAuth } from "../store/auth.js";
 import "./demo-layout.css";
 
 interface NavItem {
@@ -24,10 +25,12 @@ const studentNav: NavItem[] = [
 ];
 
 export function AppShell({ children }: { children: ReactNode }) {
-  const { role, route, navigate, logout } = useStore();
+  const { route, navigate } = useStore();
+  const { logout: authLogout } = useAuth();
   const h1Ref = useRef<HTMLHeadingElement>(null);
 
-  const navItems = role === "teacher" ? teacherNav : studentNav;
+  const navItems =
+    route.screen.startsWith("teacher") ? teacherNav : studentNav;
 
   useEffect(() => {
     h1Ref.current?.focus();
@@ -62,7 +65,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             </button>
           ))}
         </div>
-        <button className="s-topnav__logout" onClick={logout}>
+        <button className="s-topnav__logout" onClick={authLogout}>
           Sign out
         </button>
       </nav>

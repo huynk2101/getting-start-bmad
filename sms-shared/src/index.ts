@@ -25,3 +25,20 @@ export interface HealthCheckResponse {
   database: "connected" | "disconnected";
   timestamp: string;
 }
+
+export interface LoginRequest {
+  username: string;
+  password: string;
+}
+
+export interface UserDTO {
+  id: string;
+  username: string;
+  firstName: string;
+  lastName: string;
+  role: "TEACHER" | "STUDENT";
+}
+
+export interface LoginResponse {
+  data: { user: UserDTO };
+}
