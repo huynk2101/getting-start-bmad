@@ -148,3 +148,7 @@ These enable the component implementation. They resolve the Story 1.2 deferrals 
 ## Notes
 
 - Story 1.2 deferred items (tabular-nums rule, skeleton-fill conflict, shadow/elevation tokens, interactive-state colors, App consumption test) — this story resolves #skeleton-fill, #shadow, #interactive-state; see `deferred-work.md`.
+
+### Review Findings (2026-09-04 — code review of stories 1.1–1.3)
+
+- [x] [Review][Patch] Skeleton listener-cleanup test is a no-op — mock never registers real listeners [`Skeleton.test.tsx:46-50`] — rewrote test to spy on addEventListener/removeEventListener and verify cleanup on unmount

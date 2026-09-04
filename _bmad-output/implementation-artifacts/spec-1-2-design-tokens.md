@@ -3,7 +3,7 @@ title: '1-2-design-tokens'
 type: 'feature'
 created: '2026-09-03'
 status: 'done'
-review_loop_iteration: 0
+review_loop_iteration: 1
 baseline_commit: 'NO_VCS'
 context:
   - '_bmad-output/planning-artifacts/ux-designs/ux-getting-start-bmad-2026-09-03/DESIGN.md'
@@ -141,3 +141,8 @@ Utility classes (`.display`, `.display-sm`, `.body`, `.label`) are deliberately 
 
 - Vite client types reference so the `.css` import typechecks cleanly
   [`vite-env.d.ts:1`](../../sms-frontend/src/vite-env.d.ts#L1)
+
+### Review Findings (2026-09-04 — code review of stories 1.1–1.3)
+
+- [x] [Review][Patch] `--font-display` uses system sans-serif stack — spec requires Georgia serif [`tokens.css:33`] — changed to `Georgia, "Times New Roman", serif`
+- [x] [Review][Patch] `--radius-sm`/`--radius-md` are 6px/10px — spec requires 4px/8px [`tokens.css:63-65`] — corrected to 4px/8px, `--radius-lg` also corrected to 12px

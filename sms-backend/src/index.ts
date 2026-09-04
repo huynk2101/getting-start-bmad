@@ -12,8 +12,8 @@ if (!process.env.DATABASE_URL) {
 
 const app = express();
 const port = parseInt(process.env.PORT || "3000", 10);
-if (Number.isNaN(port) || port <= 0) {
-  console.error(`FATAL: PORT environment variable is invalid: "${process.env.PORT}". Must be a positive integer.`);
+if (Number.isNaN(port) || port < 1 || port > 65535) {
+  console.error(`FATAL: PORT environment variable is invalid: "${process.env.PORT}". Must be an integer between 1 and 65535.`);
   process.exit(1);
 }
 
@@ -24,4 +24,11 @@ app.use("/api", authRouter);
 
 app.listen(port, () => {
   console.log(`SMS Backend listening on port ${port}`);
+}).on("error", (err: NodeJS.ErrnoException) => {
+  if (err.code === "EADDRINUSE") {
+    console.error(`FATAL: Port ${port} is already in use. Free the port or set PORT to a different value.`);
+  } else {
+    console.error("FATAL: Server failed to start:", err.message);
+  }
+  process.exit(1);
 });

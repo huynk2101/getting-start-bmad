@@ -14,10 +14,12 @@ healthRouter.get("/health", async (_req, res) => {
   let dbStatus: "connected" | "disconnected" = "disconnected";
   try {
     const query = prisma.$queryRaw`SELECT 1`;
-    const timeout = new Promise<never>((_, reject) =>
-      setTimeout(() => reject(new Error("DB probe timed out")), 5000),
-    );
+    let timer: ReturnType<typeof setTimeout>;
+    const timeout = new Promise<never>((_, reject) => {
+      timer = setTimeout(() => reject(new Error("DB probe timed out")), 5000);
+    });
     await Promise.race([query, timeout]);
+    clearTimeout(timer!);
     dbStatus = "connected";
   } catch (err) {
     console.error("[health] DB probe failed:", err);

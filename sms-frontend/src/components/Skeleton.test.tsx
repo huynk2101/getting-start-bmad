@@ -3,15 +3,24 @@ import { render } from "@testing-library/react";
 import { Skeleton } from "./Skeleton.js";
 
 function mockMatchMedia(matches: boolean) {
+  const listeners: Array<{ type: string; listener: EventListener }> = [];
   window.matchMedia = ((query: string) => ({
     matches,
     media: query,
     onchange: null,
     addListener: () => {},
     removeListener: () => {},
-    addEventListener: () => {},
-    removeEventListener: () => {},
+    addEventListener: (type: string, listener: EventListener) => {
+      listeners.push({ type, listener });
+    },
+    removeEventListener: (type: string, listener: EventListener) => {
+      const idx = listeners.findIndex(
+        (l) => l.type === type && l.listener === listener,
+      );
+      if (idx !== -1) listeners.splice(idx, 1);
+    },
     dispatchEvent: () => false,
+    _listeners: listeners,
   })) as unknown as typeof window.matchMedia;
 }
 
@@ -44,9 +53,15 @@ describe("Skeleton", () => {
     expect(getSkeleton()).toHaveClass("s-skeleton--block");
   });
 
-  it("unmounts without leaking listeners or throwing", () => {
+  it("removes the matchMedia listener on unmount", () => {
     mockMatchMedia(false);
     const { unmount } = render(<Skeleton />);
-    expect(() => unmount()).not.toThrow();
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)") as unknown as {
+      _listeners: Array<{ type: string; listener: EventListener }>;
+    };
+    expect(mq._listeners.length).toBe(1);
+    expect(mq._listeners[0].type).toBe("change");
+    unmount();
+    expect(mq._listeners.length).toBe(0);
   });
 });

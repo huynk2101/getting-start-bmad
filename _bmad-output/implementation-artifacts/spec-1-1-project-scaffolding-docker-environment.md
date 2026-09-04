@@ -3,7 +3,7 @@ title: '1-1-project-scaffolding-docker-environment'
 type: 'chore'
 created: '2026-09-03'
 status: 'done'
-review_loop_iteration: 0
+review_loop_iteration: 1
 baseline_commit: 'NO_VCS'
 context:
   - '_bmad-output/implementation-artifacts/epic-1-context.md'
@@ -170,3 +170,12 @@ context:
 - [x] [Review][Defer] docker compose vs docker-compose command/filename spelling — DEFERRED: aligned on `docker compose` / `docker-compose.yaml` in README; cosmetic.
 
 - [x] [Review][Dismiss] Acceptance Criteria count mismatch — dismissed: the section actually lists 3 Given/When/Then criteria; the "only two" read was a miscount.
+
+### Review Findings (2026-09-04 — code review of stories 1.1–1.3)
+
+- [x] [Review][Patch] Health timeout timer leak — `setTimeout` never cleared on success [sms-backend/src/routes/health.ts:17-19] — cleared timer in race handler
+- [x] [Review][Patch] No EADDRINUSE handler on `app.listen()` — port conflict crashes with unhelpful error [sms-backend/src/index.ts:25] — added .on("error") handler
+- [x] [Review][Patch] Port `0` passes validation — OS assigns random ephemeral port [sms-backend/src/index.ts:14] — changed validation to `port < 1 || port > 65535`
+- [x] [Review][Defer] PrismaClient module-scope instantiation ordering — works due to import order but fragile [sms-backend/src/routes/health.ts:8-11] — deferred, pre-existing
+- [x] [Review][Defer] Health timeout race when query+timer reject simultaneously — masks real DB error [sms-backend/src/routes/health.ts:20] — deferred, low impact
+- [x] [Review][Defer] No backend test infrastructure [sms-backend/] — deferred, pre-existing gap

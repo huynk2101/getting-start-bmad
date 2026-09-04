@@ -145,3 +145,18 @@ The following Story 1.2 deferrals were intentionally resolved while building Sto
 - source_spec: `_bmad-output/implementation-artifacts/spec-1-5-user-login-fr-23-nfr-6.md`
   summary: Two sources of truth for routing remain — React Router and mock store.
   evidence: Real — surfaced by blind-hunter. `useSyncStoreToUrl` reconciles them opportunistically. Full React Router migration is the intended follow-on per the spec's Design Notes.
+
+## Deferred from: code review of stories 1.1–1.3 (2026-09-04)
+
+- summary: PrismaClient is instantiated at module scope in health.ts before the DATABASE_URL guard in index.ts runs. Works because index.ts imports dotenv/config first, but fragile if import order changes.
+  evidence: Real — surfaced by blind-hunter + edge-case-hunter. The guard is effective today due to import resolution order, but module-scope DB client is a latent risk. Deferred because it works and is pre-existing.
+- summary: Health timeout race — when both the DB query and the 5s timeout reject simultaneously, `Promise.race` may pick the timeout error, masking the real DB error in logs.
+  evidence: Real — surfaced by edge-case-hunter. Both paths report unhealthy (503); the status is correct but the logged error may be misleading. Low practical impact.
+- summary: Toast `show()` with an empty string renders a blank visible toast element with shadow.
+  evidence: Real — surfaced by edge-case-hunter. Cosmetic; caller responsibility to provide meaningful messages.
+- summary: Module-global `nextId` counter has no overflow guard. After 2^53 calls, IDs wrap and could theoretically conflict with pending timers.
+  evidence: Real — surfaced by edge-case-hunter. Theoretical; requires ~9 quadrillion calls. Not a practical concern.
+- summary: No toast deduplication — rapid `show()` calls with identical messages stack visually.
+  evidence: Real — surfaced by edge-case-hunter. Design choice, not a bug. Deduplication could be added as a feature enhancement.
+- summary: No backend test infrastructure — no test framework, no test script, no test files under sms-backend/.
+  evidence: Real — surfaced by verification-gap. Pre-existing gap; backend tests belong when test infra is added.
