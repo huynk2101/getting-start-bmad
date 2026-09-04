@@ -42,7 +42,7 @@ development_status:
   1-3-base-components-ux-dr4-ux-dr5-ux-dr6-ux-dr8: done
   1-4-database-schema-seed-data: done
   1-5-user-login-fr-23-nfr-6: done
-  1-6-role-based-access-control-fr-24: review
+  1-6-role-based-access-control-fr-24: done
   epic-1-retrospective: optional
 
   epic-2: backlog

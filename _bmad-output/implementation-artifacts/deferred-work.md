@@ -175,3 +175,26 @@ The following Story 1.2 deferrals were intentionally resolved while building Sto
 - source_spec: `_bmad-output/implementation-artifacts/spec-1-6-role-based-access-control-fr-24.md`
   summary: Demonstrator endpoints (`/api/protected/*`) are unconditionally mounted with no environment guard.
   evidence: Deliberate per spec ("Demonstrator endpoints return `{ data: { ok: true } }`"). Could be gated by env flag in a later hardening pass.
+
+## Deferred from: code review of spec-1-6-role-based-access-control-fr-24 (2026-09-04)
+
+- summary: Inline role type vs shared `UserRole`
+  evidence: Pre-existing across the codebase. Unifying to a shared `UserRole` from `sms-shared` is a future refactor.
+- summary: OR semantics of `requireRole` undocumented
+  evidence: `.includes()` for OR is the natural and intended reading for this use case.
+- summary: No automated tests
+  evidence: Pre-existing gap (no test infra in sms-backend).
+- summary: No shared error helper
+  evidence: Pre-existing pattern in `auth.ts`.
+- summary: No auth failure logging
+  evidence: Pre-existing gap.
+- summary: No JSDoc/OpenAPI on routes
+  evidence: No routes in the codebase have OpenAPI annotations yet. Pre-existing gap.
+- summary: Lack of role hierarchy (e.g. ADMIN role)
+  evidence: Future epic concern; currently only TEACHER and STUDENT exist.
+- summary: Absence of fine-grained permissions (ABAC)
+  evidence: Future epic concern; RBAC is sufficient for current requirements.
+- summary: Missing rate-limiting and anti-abuse protection
+  evidence: Infrastructure concern, pre-existing gap for all routes.
+- summary: Missing Cache-Control headers on protected endpoints
+  evidence: Infrastructure concern, pre-existing gap for all routes.

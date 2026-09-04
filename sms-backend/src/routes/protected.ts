@@ -4,6 +4,9 @@ import { requireRole } from "../middleware/authorize.js";
 
 export const protectedRouter = Router();
 
+/**
+ * Demonstrator route for Teacher role
+ */
 protectedRouter.get(
   "/protected/teacher-only",
   requireAuth,
@@ -13,6 +16,9 @@ protectedRouter.get(
   },
 );
 
+/**
+ * Demonstrator route for Student role
+ */
 protectedRouter.get(
   "/protected/student-only",
   requireAuth,

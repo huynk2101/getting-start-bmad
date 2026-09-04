@@ -1,11 +1,8 @@
 import type { Request, Response, NextFunction } from "express";
 
 export function requireRole(
-  ...roles: Array<"TEACHER" | "STUDENT">
-) {
-  if (roles.length === 0) {
-    throw new Error("requireRole: at least one role must be specified");
-  }
+  ...roles: ["TEACHER" | "STUDENT", ...Array<"TEACHER" | "STUDENT">]
+): (req: Request, res: Response, next: NextFunction) => void {
 
   return (req: Request, res: Response, next: NextFunction): void => {
     if (!req.user) {

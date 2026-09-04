@@ -74,6 +74,22 @@ context:
 - Given a matching role JWT, when the matching protected route is hit, then the backend returns 200 with `{ data: { ok: true } }`.
 - Given `npm run typecheck` and `npm run build` run in sms-backend, then both pass.
 
+### Review Findings
+
+- [x] [Review][Patch] Missing explicit return type annotation on `requireRole` factory [`authorize.ts:3`](../../sms-backend/src/middleware/authorize.ts#L3)
+- [x] [Review][Patch] Demo routes lack JSDoc comment marking them as demonstrators [`protected.ts:7`](../../sms-backend/src/routes/protected.ts#L7)
+- [x] [Review][Defer] Inline role type vs shared `UserRole` [`authorize.ts:4`](../../sms-backend/src/middleware/authorize.ts#L4) — deferred, pre-existing
+- [x] [Review][Defer] OR semantics of `requireRole` undocumented [`authorize.ts:3`](../../sms-backend/src/middleware/authorize.ts#L3) — deferred, pre-existing
+- [x] [Review][Defer] No automated tests — deferred, pre-existing
+- [x] [Review][Defer] No shared error helper [`authorize.ts:18`](../../sms-backend/src/middleware/authorize.ts#L18) — deferred, pre-existing
+- [x] [Review][Defer] No auth failure logging [`authorize.ts:18`](../../sms-backend/src/middleware/authorize.ts#L18) — deferred, pre-existing
+- [x] [Review][Defer] No JSDoc/OpenAPI on routes [`protected.ts:7`](../../sms-backend/src/routes/protected.ts#L7) — deferred, pre-existing
+- [x] [Review][Patch] Use compile-time tuple types `[Role, ...Role[]]` instead of runtime throw for empty roles [`authorize.ts:4`](../../sms-backend/src/middleware/authorize.ts#L4)
+- [x] [Review][Defer] Lack of role hierarchy (e.g. ADMIN role) — deferred, future epic
+- [x] [Review][Defer] Absence of fine-grained permissions (ABAC) — deferred, future epic
+- [x] [Review][Defer] Missing rate-limiting and anti-abuse protection on protected endpoints — deferred, infra
+- [x] [Review][Defer] Missing Cache-Control headers on protected endpoints — deferred, infra
+
 ## Spec Change Log
 
 ## Design Notes
