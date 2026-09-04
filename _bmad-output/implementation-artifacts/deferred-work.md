@@ -160,3 +160,18 @@ The following Story 1.2 deferrals were intentionally resolved while building Sto
   evidence: Real — surfaced by edge-case-hunter. Design choice, not a bug. Deduplication could be added as a feature enhancement.
 - summary: No backend test infrastructure — no test framework, no test script, no test files under sms-backend/.
   evidence: Real — surfaced by verification-gap. Pre-existing gap; backend tests belong when test infra is added.
+
+## Deferred from: code review of spec-1-6 (2026-09-04)
+
+- source_spec: `_bmad-output/implementation-artifacts/spec-1-6-role-based-access-control-fr-24.md`
+  summary: No automated tests for `requireRole` middleware or `/api/protected/*` endpoints.
+  evidence: Real — no test infrastructure exists in sms-backend. Pre-existing gap not caused by this story. Add when backend test suite is established.
+- source_spec: `_bmad-output/implementation-artifacts/spec-1-6-role-based-access-control-fr-24.md`
+  summary: Role type `"TEACHER" | "STUDENT"` is duplicated inline in authorize.ts rather than imported from sms-shared.
+  evidence: Real — same pattern already exists in auth.ts. Consolidating to a shared UserRole type from sms-shared is a clean-up task for a later story.
+- source_spec: `_bmad-output/implementation-artifacts/spec-1-6-role-based-access-control-fr-24.md`
+  summary: No security/audit logging when authorization fails (401/403) on protected routes.
+  evidence: Real — pre-existing gap; no logging exists on any route in this codebase. Add with a logging middleware story.
+- source_spec: `_bmad-output/implementation-artifacts/spec-1-6-role-based-access-control-fr-24.md`
+  summary: Demonstrator endpoints (`/api/protected/*`) are unconditionally mounted with no environment guard.
+  evidence: Deliberate per spec ("Demonstrator endpoints return `{ data: { ok: true } }`"). Could be gated by env flag in a later hardening pass.
