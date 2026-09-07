@@ -196,5 +196,11 @@ The following Story 1.2 deferrals were intentionally resolved while building Sto
   evidence: Future epic concern; RBAC is sufficient for current requirements.
 - summary: Missing rate-limiting and anti-abuse protection
   evidence: Infrastructure concern, pre-existing gap for all routes.
-- summary: Missing Cache-Control headers on protected endpoints
+- summary: Absence of Cache-Control headers on protected endpoints
   evidence: Infrastructure concern, pre-existing gap for all routes.
+
+## Deferred from: code review of spec-2-1-teacher-daily-class-overview (2026-09-07)
+
+- source_spec: `_bmad-output/implementation-artifacts/spec-2-1-teacher-daily-class-overview.md`
+  summary: No automated route tests for `GET /api/teacher/dashboard` (200, 400, 401 scenarios).
+  evidence: Real — pre-existing backend test infrastructure gap (no test runner or HTTP suite configured in `sms-backend`).

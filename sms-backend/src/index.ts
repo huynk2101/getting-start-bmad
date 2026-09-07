@@ -4,6 +4,9 @@ import cookieParser from "cookie-parser";
 import { healthRouter } from "./routes/health.js";
 import { authRouter } from "./routes/auth.js";
 import { protectedRouter } from "./routes/protected.js";
+import { teacherRouter } from "./routes/teacher.js";
+import { requireAuth } from "./middleware/auth.js";
+import { requireRole } from "./middleware/authorize.js";
 
 if (!process.env.DATABASE_URL) {
   console.error("FATAL: DATABASE_URL environment variable is not set.");
@@ -23,6 +26,7 @@ app.use(cookieParser());
 app.use("/api", healthRouter);
 app.use("/api", authRouter);
 app.use("/api", protectedRouter);
+app.use("/api/teacher", requireAuth, requireRole("TEACHER"), teacherRouter);
 
 app.listen(port, () => {
   console.log(`SMS Backend listening on port ${port}`);

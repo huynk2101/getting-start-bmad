@@ -40,7 +40,7 @@
 }
 
 .s-timeline-item:hover {
-  background: var(--color-background);
+  background: var(--color-surface);
 }
 
 .s-timeline-time {
@@ -70,4 +70,30 @@
   .s-widget-grid {
     grid-template-columns: 1fr;
   }
+}
+
+.s-inline-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: var(--text-label);
+}
+
+.s-inline-banner--error {
+  background: color-mix(in srgb, var(--color-danger) 12%, transparent);
+  color: var(--color-danger);
+  border: 1px solid color-mix(in srgb, var(--color-danger) 30%, transparent);
+}
+
+.s-inline-banner__retry {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font-size: var(--text-label);
+  font-weight: var(--weight-label);
+  text-decoration: underline;
+  padding: 0;
 }

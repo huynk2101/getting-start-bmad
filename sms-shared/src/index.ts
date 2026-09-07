@@ -42,3 +42,17 @@ export interface UserDTO {
 export interface LoginResponse {
   data: { user: UserDTO };
 }
+
+// --- Teacher Dashboard ---
+
+export interface TodayClass {
+  id: string;
+  name: string;
+  startTime: string;
+  endTime: string;
+  studentCount: number;
+}
+
+export interface DashboardResponse {
+  data: { classes: TodayClass[] };
+}
