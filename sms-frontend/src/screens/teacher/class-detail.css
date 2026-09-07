@@ -71,3 +71,8 @@
 .s-search-input:focus {
   border-color: var(--color-primary);
 }
+
+.s-table-row:hover {
+  background: var(--color-surface);
+}
+

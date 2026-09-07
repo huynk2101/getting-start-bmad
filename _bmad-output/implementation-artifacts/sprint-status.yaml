@@ -47,7 +47,7 @@ development_status:
 
   epic-2: in-progress
   2-1-teacher-daily-class-overview-fr-1-ux-dr1-ux-dr5-ux-dr8: done
-  2-2-class-detail-view-fr-2-fr-4-ux-dr5-ux-dr18-ux-dr20: backlog
+  2-2-class-detail-view-fr-2-fr-4-ux-dr5-ux-dr18-ux-dr20: done
   2-3-class-list-fr-3-ux-dr5-ux-dr8-ux-dr9: backlog
   2-4-student-profile-view-fr-5-ux-dr4-ux-dr5: backlog
   epic-2-retrospective: optional

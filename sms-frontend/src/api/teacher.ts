@@ -33,3 +33,30 @@ export function useTodayClasses() {
     staleTime: 60_000,
   });
 }
+
+async function fetchClassDetail(classId: string): Promise<import("sms-shared").ClassDetailDTO> {
+  const res = await fetch(`/api/teacher/classes/${encodeURIComponent(classId)}`, {
+    credentials: "include",
+  });
+
+  if (!res.ok) {
+    const payload = await res.json().catch(() => null);
+    const message = payload?.error?.message ?? "Failed to load class details";
+    const err = new Error(message) as Error & { code?: string };
+    err.code = payload?.error?.code;
+    throw err;
+  }
+
+  const payload = (await res.json()) as import("sms-shared").ClassDetailResponse;
+  return payload.data.class;
+}
+
+export function useClassDetail(classId?: string) {
+  return useQuery<import("sms-shared").ClassDetailDTO, Error>({
+    queryKey: ["classDetail", classId],
+    queryFn: () => fetchClassDetail(classId!),
+    enabled: Boolean(classId),
+    staleTime: 60_000,
+  });
+}
+

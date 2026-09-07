@@ -80,3 +80,73 @@ teacherRouter.get("/dashboard", async (req, res) => {
     });
   }
 });
+
+/**
+ * GET /api/teacher/classes/:classId
+ * Returns class details, schedules, and student roster for the authenticated teacher.
+ */
+teacherRouter.get("/classes/:classId", async (req, res) => {
+  const { classId } = req.params;
+  const teacherId = req.user!.userId;
+
+  try {
+    const cls = await prisma.class.findFirst({
+      where: {
+        id: classId,
+        teacherId,
+      },
+      include: {
+        teacher: {
+          select: {
+            firstName: true,
+            lastName: true,
+          },
+        },
+        schedules: true,
+        students: {
+          select: {
+            id: true,
+            username: true,
+            firstName: true,
+            lastName: true,
+          },
+        },
+      },
+    });
+
+    if (!cls) {
+      res.status(404).json({
+        error: { code: "NOT_FOUND", message: "Class not found or access denied" },
+      });
+      return;
+    }
+
+    const classDetail = {
+      id: cls.id,
+      name: cls.name,
+      teacherName: `${cls.teacher.firstName} ${cls.teacher.lastName}`,
+      schedules: cls.schedules.map((s) => ({
+        id: s.id,
+        dayOfWeek: s.dayOfWeek,
+        startTime: s.startTime,
+        endTime: s.endTime,
+      })),
+      studentCount: cls.students.length,
+      students: cls.students.map((s) => ({
+        id: s.id,
+        firstName: s.firstName,
+        lastName: s.lastName,
+        email: `${s.username}@school.test`,
+        studentId: `STU-${s.id.slice(0, 6).toUpperCase()}`,
+      })),
+    };
+
+    res.json({ data: { class: classDetail } });
+  } catch (err) {
+    console.error(`GET /api/teacher/classes/${classId} error:`, err);
+    res.status(500).json({
+      error: { code: "INTERNAL_ERROR", message: "An unexpected error occurred" },
+    });
+  }
+});
+

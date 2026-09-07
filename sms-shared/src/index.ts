@@ -56,3 +56,34 @@ export interface TodayClass {
 export interface DashboardResponse {
   data: { classes: TodayClass[] };
 }
+
+// --- Class Detail ---
+
+export interface ClassDetailStudent {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  studentId?: string;
+}
+
+export interface ClassSchedule {
+  id: string;
+  dayOfWeek: string;
+  startTime: string;
+  endTime: string;
+}
+
+export interface ClassDetailDTO {
+  id: string;
+  name: string;
+  teacherName?: string;
+  schedules: ClassSchedule[];
+  studentCount: number;
+  students: ClassDetailStudent[];
+}
+
+export interface ClassDetailResponse {
+  data: { class: ClassDetailDTO };
+}
+
