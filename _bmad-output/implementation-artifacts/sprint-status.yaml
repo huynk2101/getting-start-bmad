@@ -29,8 +29,8 @@
 # - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
 # - Retrospective appends its action items to action_items; the status view surfaces open ones
 generated: 09-03-2026 16:00
-last_updated: 09-04-2026
-project: SchoolDesk
+last_updated: 09-04-2026 17:05
+project: getting-start-bmad
 project_key: NOKEY
 tracking_system: file-system
 story_location: 
@@ -43,7 +43,7 @@ development_status:
   1-4-database-schema-seed-data: done
   1-5-user-login-fr-23-nfr-6: done
   1-6-role-based-access-control-fr-24: done
-  epic-1-retrospective: optional
+  epic-1-retrospective: done
 
   epic-2: backlog
   2-1-teacher-daily-class-overview-fr-1-ux-dr1-ux-dr5-ux-dr8: backlog
